@@ -1,1 +1,1 @@
-"# P_Loja" 
+Projeto P_Loja - Prova bimestral do professor Manoel Carvalho. Consiste em uma loja virtual ultilizando as ferramentas PHP e MySQL. Projeto de Giovanny Lucas e Manuel Gustavo. Já com cadastro de produtos e categorias, consulta de ambos e upload de múltiplas imagens para 1 produto usando PK.
