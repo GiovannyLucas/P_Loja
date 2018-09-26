@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Product Detail</title>
+	<title>DETALHES DO PRODUTOS</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
@@ -47,18 +47,18 @@
 				</div>
 
 				<span class="topbar-child1">
-					Free shipping for standard order over $100
+					Envio grátis para compras a partirrrrrrrrrrrr de R$100 putariaaaaaaaaa
 				</span>
 
 				<div class="topbar-child2">
 					<span class="topbar-email">
-						fashe@example.com
+						gmmodas@gmail.com
 					</span>
 
 					<div class="topbar-language rs1-select2">
 						<select class="selection-1" name="time">
-							<option>USD</option>
-							<option>EUR</option>
+							<option>D$</option>
+							<option>R$</option>
 						</select>
 					</div>
 				</div>
@@ -66,7 +66,7 @@
 
 			<div class="wrap_header">
 				<!-- Logo -->
-				<a href="index.html" class="logo">
+				<a href="index.php" class="logo">
 					<img src="images/icons/logo.png" alt="IMG-LOGO">
 				</a>
 
@@ -75,36 +75,36 @@
 					<nav class="menu">
 						<ul class="main_menu">
 							<li>
-								<a href="index.html">Home</a>
+								<a href="index.php">Menu</a>
 								<ul class="sub_menu">
-									<li><a href="index.html">Homepage V1</a></li>
-									<li><a href="home-02.html">Homepage V2</a></li>
-									<li><a href="home-03.html">Homepage V3</a></li>
+									<li><a href="index.php">Homepage V1</a></li>
+									<li><a href="home-02.php">Homepage V2</a></li>
+									<li><a href="home-03.php">Homepage V3</a></li>
 								</ul>
 							</li>
 
 							<li>
-								<a href="product.html">Shop</a>
+								<a href="product.php">Fazer compras</a>
 							</li>
 
 							<li class="sale-noti">
-								<a href="product.html">Sale</a>
+								<a href="product.php">Promoção</a>
 							</li>
 
 							<li>
-								<a href="cart.html">Features</a>
+								<a href="cart.php">Destaques</a>
 							</li>
 
 							<li>
-								<a href="blog.html">Blog</a>
+								<a href="blog.php">Blog</a>
 							</li>
 
 							<li>
-								<a href="about.html">About</a>
+								<a href="about.php">Sobre</a>
 							</li>
 
 							<li>
-								<a href="contact.html">Contact</a>
+								<a href="contact.php">Contato</a>
 							</li>
 						</ul>
 					</nav>
@@ -181,7 +181,7 @@
 							<div class="header-cart-buttons">
 								<div class="header-cart-wrapbtn">
 									<!-- Button -->
-									<a href="cart.html" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+									<a href="cart.php" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
 										View Cart
 									</a>
 								</div>
@@ -202,7 +202,7 @@
 		<!-- Header Mobile -->
 		<div class="wrap_header_mobile">
 			<!-- Logo moblie -->
-			<a href="index.html" class="logo-mobile">
+			<a href="index.php" class="logo-mobile">
 				<img src="images/icons/logo.png" alt="IMG-LOGO">
 			</a>
 
@@ -279,7 +279,7 @@
 							<div class="header-cart-buttons">
 								<div class="header-cart-wrapbtn">
 									<!-- Button -->
-									<a href="cart.html" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+									<a href="cart.php" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
 										View Cart
 									</a>
 								</div>
@@ -321,8 +321,8 @@
 
 							<div class="topbar-language rs1-select2">
 								<select class="selection-1" name="time">
-									<option>USD</option>
-									<option>EUR</option>
+									<option>D$</option>
+									<option>R$</option>
 								</select>
 							</div>
 						</div>
@@ -339,37 +339,37 @@
 					</li>
 
 					<li class="item-menu-mobile">
-						<a href="index.html">Home</a>
+						<a href="index.php">Menu</a>
 						<ul class="sub-menu">
-							<li><a href="index.html">Homepage V1</a></li>
-							<li><a href="home-02.html">Homepage V2</a></li>
-							<li><a href="home-03.html">Homepage V3</a></li>
+							<li><a href="index.php">Homepage V1</a></li>
+							<li><a href="home-02.php">Homepage V2</a></li>
+							<li><a href="home-03.php">Homepage V3</a></li>
 						</ul>
 						<i class="arrow-main-menu fa fa-angle-right" aria-hidden="true"></i>
 					</li>
 
 					<li class="item-menu-mobile">
-						<a href="product.html">Shop</a>
+						<a href="product.php">Fazer compras</a>
 					</li>
 
 					<li class="item-menu-mobile">
-						<a href="product.html">Sale</a>
+						<a href="product.php">Promoção</a>
 					</li>
 
 					<li class="item-menu-mobile">
-						<a href="cart.html">Features</a>
+						<a href="cart.php">Destaques</a>
 					</li>
 
 					<li class="item-menu-mobile">
-						<a href="blog.html">Blog</a>
+						<a href="blog.php">Blog</a>
 					</li>
 
 					<li class="item-menu-mobile">
-						<a href="about.html">About</a>
+						<a href="about.php">Sobre</a>
 					</li>
 
 					<li class="item-menu-mobile">
-						<a href="contact.html">Contact</a>
+						<a href="contact.php">Contato</a>
 					</li>
 				</ul>
 			</nav>
@@ -378,23 +378,23 @@
 
 	<!-- breadcrumb -->
 	<div class="bread-crumb bgwhite flex-w p-l-52 p-r-15 p-t-30 p-l-15-sm">
-		<a href="index.html" class="s-text16">
-			Home
+		<a href="index.php" class="s-text16">
+			Homens
 			<i class="fa fa-angle-right m-l-8 m-r-9" aria-hidden="true"></i>
 		</a>
 
-		<a href="product.html" class="s-text16">
-			Women
+		<a href="product.php" class="s-text16">
+			Mulheres
 			<i class="fa fa-angle-right m-l-8 m-r-9" aria-hidden="true"></i>
 		</a>
 
 		<a href="#" class="s-text16">
-			T-Shirt
+			Camiseta
 			<i class="fa fa-angle-right m-l-8 m-r-9" aria-hidden="true"></i>
 		</a>
 
 		<span class="s-text17">
-			Boxy T-Shirt with Roll Sleeve Detail
+			Camisas com detalhes na manga
 		</span>
 	</div>
 
@@ -449,7 +449,7 @@
 
 						<div class="rs2-select2 rs3-select2 bo4 of-hidden w-size16">
 							<select class="selection-2" name="size">
-								<option>Choose an option</option>
+								<option>Escolha uma opção</option>
 								<option>Size S</option>
 								<option>Size M</option>
 								<option>Size L</option>
@@ -460,7 +460,7 @@
 
 					<div class="flex-m flex-w">
 						<div class="s-text15 w-size15 t-center">
-							Color
+							Cor
 						</div>
 
 						<div class="rs2-select2 rs3-select2 bo4 of-hidden w-size16">
@@ -506,7 +506,7 @@
 				<!--  -->
 				<div class="wrap-dropdown-content bo6 p-t-15 p-b-14 active-dropdown-content">
 					<h5 class="js-toggle-dropdown-content flex-sb-m cs-pointer m-text19 color0-hov trans-0-4">
-						Description
+						Descrição
 						<i class="down-mark fs-12 color1 fa fa-minus dis-none" aria-hidden="true"></i>
 						<i class="up-mark fs-12 color1 fa fa-plus" aria-hidden="true"></i>
 					</h5>
@@ -585,7 +585,7 @@
 							</div>
 
 							<div class="block2-txt p-t-20">
-								<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
+								<a href="product-detail.php" class="block2-name dis-block s-text3 p-b-5">
 									Herschel supply co 25l
 								</a>
 
@@ -618,7 +618,7 @@
 							</div>
 
 							<div class="block2-txt p-t-20">
-								<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
+								<a href="product-detail.php" class="block2-name dis-block s-text3 p-b-5">
 									Denim jacket blue
 								</a>
 
@@ -651,7 +651,7 @@
 							</div>
 
 							<div class="block2-txt p-t-20">
-								<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
+								<a href="product-detail.php" class="block2-name dis-block s-text3 p-b-5">
 									Coach slim easton black
 								</a>
 
@@ -684,7 +684,7 @@
 							</div>
 
 							<div class="block2-txt p-t-20">
-								<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
+								<a href="product-detail.php" class="block2-name dis-block s-text3 p-b-5">
 									Frayed denim shorts
 								</a>
 
@@ -721,7 +721,7 @@
 							</div>
 
 							<div class="block2-txt p-t-20">
-								<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
+								<a href="product-detail.php" class="block2-name dis-block s-text3 p-b-5">
 									Herschel supply co 25l
 								</a>
 
@@ -754,7 +754,7 @@
 							</div>
 
 							<div class="block2-txt p-t-20">
-								<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
+								<a href="product-detail.php" class="block2-name dis-block s-text3 p-b-5">
 									Denim jacket blue
 								</a>
 
@@ -787,7 +787,7 @@
 							</div>
 
 							<div class="block2-txt p-t-20">
-								<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
+								<a href="product-detail.php" class="block2-name dis-block s-text3 p-b-5">
 									Coach slim easton black
 								</a>
 
@@ -820,7 +820,7 @@
 							</div>
 
 							<div class="block2-txt p-t-20">
-								<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
+								<a href="product-detail.php" class="block2-name dis-block s-text3 p-b-5">
 									Frayed denim shorts
 								</a>
 
@@ -846,12 +846,12 @@
 		<div class="flex-w p-b-90">
 			<div class="w-size6 p-t-30 p-l-15 p-r-15 respon3">
 				<h4 class="s-text12 p-b-30">
-					GET IN TOUCH
+					Entrar em contato
 				</h4>
 
 				<div>
 					<p class="s-text7 w-size27">
-						Any questions? Let us know in store at 8th floor, 379 Hudson St, New York, NY 10018 or call us on (+1) 96 716 6879
+						Alguma pergunta? Deixe-nos saber na loja , 241 São Miguel, RIO GRANDE DO NORTE, RN 59920-000 ou ligue para: Tim - (84) 9 9616 8679  |  Claro - (84) 9 9108 5873
 					</p>
 
 					<div class="flex-m p-t-30">
@@ -866,31 +866,31 @@
 
 			<div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
 				<h4 class="s-text12 p-b-30">
-					Categories
+					Categorias
 				</h4>
 
 				<ul>
 					<li class="p-b-9">
 						<a href="#" class="s-text7">
-							Men
+							Masculino
 						</a>
 					</li>
 
 					<li class="p-b-9">
 						<a href="#" class="s-text7">
-							Women
+							Feminina
 						</a>
 					</li>
 
 					<li class="p-b-9">
 						<a href="#" class="s-text7">
-							Dresses
+							Vestidos
 						</a>
 					</li>
 
 					<li class="p-b-9">
 						<a href="#" class="s-text7">
-							Sunglasses
+							Òculos de sol
 						</a>
 					</li>
 				</ul>
@@ -904,25 +904,25 @@
 				<ul>
 					<li class="p-b-9">
 						<a href="#" class="s-text7">
-							Search
+							Buscar
 						</a>
 					</li>
 
 					<li class="p-b-9">
 						<a href="#" class="s-text7">
-							About Us
+							Sobre nós
 						</a>
 					</li>
 
 					<li class="p-b-9">
 						<a href="#" class="s-text7">
-							Contact Us
+							Contrate-nos
 						</a>
 					</li>
 
 					<li class="p-b-9">
 						<a href="#" class="s-text7">
-							Returns
+							Retornar
 						</a>
 					</li>
 				</ul>
@@ -930,25 +930,25 @@
 
 			<div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
 				<h4 class="s-text12 p-b-30">
-					Help
+					Ajuda
 				</h4>
 
 				<ul>
 					<li class="p-b-9">
 						<a href="#" class="s-text7">
-							Track Order
+							Acompanhar pedido
 						</a>
 					</li>
 
 					<li class="p-b-9">
 						<a href="#" class="s-text7">
-							Returns
+							Retornar
 						</a>
 					</li>
 
 					<li class="p-b-9">
 						<a href="#" class="s-text7">
-							Shipping
+							Remessa
 						</a>
 					</li>
 
@@ -962,7 +962,7 @@
 
 			<div class="w-size8 p-t-30 p-l-15 p-r-15 respon3">
 				<h4 class="s-text12 p-b-30">
-					Newsletter
+					Boletim de notícias
 				</h4>
 
 				<form>
@@ -974,7 +974,7 @@
 					<div class="w-size2 p-t-20">
 						<!-- Button -->
 						<button class="flex-c-m size2 bg4 bo-rad-23 hov1 m-text3 trans-0-4">
-							Subscribe
+							Inscreva-se
 						</button>
 					</div>
 
@@ -1004,10 +1004,11 @@
 			</a>
 
 			<div class="t-center s-text8 p-t-20">
-				Copyright © 2018 All rights reserved. | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+				Copyright © 2018. todos os direitos reservados. | GM MODAS - Criando modas com a sua cara  <i class="fa fa-heart-o" aria-hidden="true"></i> DE <a href="https://colorlib.com" target="_blank">#ModasPraVc #ComVc</a>
 			</div>
 		</div>
 	</footer>
+
 
 
 
@@ -1051,21 +1052,21 @@
 	<script type="text/javascript" src="vendor/sweetalert/sweetalert.min.js"></script>
 	<script type="text/javascript">
 		$('.block2-btn-addcart').each(function(){
-			var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
+			var nameProduct = $(this).parent().parent().parent().find('.block2-name').php();
 			$(this).on('click', function(){
 				swal(nameProduct, "is added to cart !", "success");
 			});
 		});
 
 		$('.block2-btn-addwishlist').each(function(){
-			var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
+			var nameProduct = $(this).parent().parent().parent().find('.block2-name').php();
 			$(this).on('click', function(){
 				swal(nameProduct, "is added to wishlist !", "success");
 			});
 		});
 
 		$('.btn-addcart-product-detail').each(function(){
-			var nameProduct = $('.product-detail-name').html();
+			var nameProduct = $('.product-detail-name').php();
 			$(this).on('click', function(){
 				swal(nameProduct, "is added to wishlist !", "success");
 			});
