@@ -17,8 +17,8 @@ error_reporting(0);
 			<input type="text" id="nome" name="nome" class="form-control" required>
 		</div>
 		<div class="form-group">
-			<label for="preco">Preço: </label>
-			<input type="text" id="preco" name="preco" class="form-control" required>
+			<label for="preco">Preço R$: </label>
+			<input type="text" id="preco" name="preco" class="form-control" placeholder="99.99" required>
 		</div>
 		<div class="form-group">
 			<label for="categoria">Categoria: </label>
@@ -38,12 +38,6 @@ error_reporting(0);
 		<div class="form-group">
 			<label for="img1">Imagem: </label>
 			<input type="file" name="arquivo[]" multiple="multiple">
-			<!--
-			<label for="img2">Imagem 2: </label>
-			<input type="file" name="img2">
-
-			<label for="img3">Imagem 3: </label>
-			<input type="file" name="img3">-->
 		</div>		
 		<div class="form-group">
 			<label for="desc">Descrição: </label>

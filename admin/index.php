@@ -432,7 +432,7 @@ error_reporting(E_ALL);
     </section>
 
 <!-- CONTEÚDO -->
-
+<div>
     <?php 
         if (isset($_GET['page'])) {
             include('pages/validas/'.$_GET['page'].'.php');
@@ -445,7 +445,7 @@ error_reporting(E_ALL);
         }
     ?>    
 
-
+</div>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
