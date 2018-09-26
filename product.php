@@ -671,7 +671,6 @@ if ($_GET['cat'] != "all") {
 				<h4 class="s-text12 p-b-30">
 					Links
 				</h4>
-
 				<ul>
 					<li class="p-b-9">
 						<a href="#" class="s-text7">
