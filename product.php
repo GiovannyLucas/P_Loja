@@ -1,7 +1,19 @@
+<?php 
+
+	include('config.php');
+	session_start();
+
+	if (!isset($_SESSION['user'])) {
+		header('location:login.php');
+	} else {
+		
+	}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>About</title>
+	<title>Product</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
@@ -27,12 +39,19 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
 <!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/noui/nouislider.min.css">
+<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
 </head>
-<body class="animsition">
+<body class="animsition" onload="ler()">
 
+<script type="text/javascript">
+	function ler() {
+		<?php $_GET['cat'] = "all"; ?>
+	}
+</script>
 	<!-- Header -->
 	<header class="header1">
 		<!-- Header desktop -->
@@ -52,7 +71,7 @@
 
 				<div class="topbar-child2">
 					<span class="topbar-email">
-						fashe@example.com
+						<?php echo $_SESSION['user']; ?>
 					</span>
 
 					<div class="topbar-language rs1-select2">
@@ -66,7 +85,7 @@
 
 			<div class="wrap_header">
 				<!-- Logo -->
-				<a href="index.html" class="logo">
+				<a href="index.php" class="logo">
 					<img src="images/icons/logo.png" alt="IMG-LOGO">
 				</a>
 
@@ -75,36 +94,31 @@
 					<nav class="menu">
 						<ul class="main_menu">
 							<li>
-								<a href="index.html">Home</a>
-								<ul class="sub_menu">
-									<li><a href="index.html">Homepage V1</a></li>
-									<li><a href="home-02.html">Homepage V2</a></li>
-									<li><a href="home-03.html">Homepage V3</a></li>
-								</ul>
+								<a href="index.php">Home</a>
 							</li>
 
 							<li>
-								<a href="product.html">Shop</a>
+								<a href="product.php">Shop</a>
 							</li>
 
 							<li class="sale-noti">
-								<a href="product.html">Sale</a>
+								<a href="product.php">Sale</a>
 							</li>
 
 							<li>
-								<a href="cart.html">Features</a>
+								<a href="cart.php">Features</a>
 							</li>
 
 							<li>
-								<a href="blog.html">Blog</a>
+								<a href="blog.php">Blog</a>
 							</li>
 
 							<li>
-								<a href="about.html">About</a>
+								<a href="about.php">About</a>
 							</li>
 
 							<li>
-								<a href="contact.html">Contact</a>
+								<a href="contact.php">Contact</a>
 							</li>
 						</ul>
 					</nav>
@@ -122,7 +136,7 @@
 						<img src="images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
 						<span class="header-icons-noti">0</span>
 
-						<!-- Header cart -->
+						<!-- Header cart noti -->
 						<div class="header-cart header-dropdown">
 							<ul class="header-cart-wrapitem">
 								<li class="header-cart-item">
@@ -316,7 +330,7 @@
 					<li class="item-topbar-mobile p-l-20 p-t-8 p-b-8">
 						<div class="topbar-child2-mobile">
 							<span class="topbar-email">
-								fashe@example.com
+								<?php echo $_SESSION['user']; ?>
 							</span>
 
 							<div class="topbar-language rs1-select2">
@@ -377,45 +391,233 @@
 	</header>
 
 	<!-- Title Page -->
-	<section class="bg-title-page p-t-40 p-b-50 flex-col-c-m" style="background-image: url(images/heading-pages-06.jpg);">
+	<section class="bg-title-page p-t-50 p-b-40 flex-col-c-m" style="background-image: url(images/heading-pages-02.jpg);">
 		<h2 class="l-text2 t-center">
-			About
+			Women
 		</h2>
+		<p class="m-text13 t-center">
+			New Arrivals Women Collection 2018
+		</p>
 	</section>
 
-	<!-- content page -->
-	<section class="bgwhite p-t-66 p-b-38">
+
+	<!-- Content page -->
+	<section class="bgwhite p-t-55 p-b-65">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-4 p-b-30">
-					<div class="hov-img-zoom">
-						<img src="images/banner-14.jpg" alt="IMG-ABOUT">
+				<div class="col-sm-6 col-md-4 col-lg-3 p-b-50">
+					<div class="leftbar p-r-20 p-r-0-sm">
+						<!--  -->
+						<h4 class="m-text14 p-b-7">
+							Categorias
+						</h4>
+
+						<ul class="p-b-54">
+							<li class="p-t-4">
+								<a href="?cat=all" class="s-text13 active1">
+									All
+								</a>
+							</li>
+
+				<?php 
+
+					$sqlCat = "SELECT * FROM categoria";
+					$queryCat = mysqli_query($conexao, $sqlCat);
+
+					while ($cat = mysqli_fetch_assoc($queryCat)) {
+							echo '
+							<li class="p-b-9">
+								<a href="?cat='.$cat['nome_cat'].'" class="s-text7">
+									'.$cat['nome_cat'].'
+								</a>
+							</li>
+							';
+					}
+
+				?>
+						</ul> 	
+
+						<div class="filter-price p-t-22 p-b-50 bo3">
+							<div class="m-text15 p-b-17">
+								Price
+							</div>
+
+							<div class="wra-filter-bar">
+								<div id="filter-bar"></div>
+							</div>
+
+							<div class="flex-sb-m flex-w p-t-16">
+								<div class="w-size11">
+									<!-- Button -->
+									<button class="flex-c-m size4 bg7 bo-rad-15 hov1 s-text14 trans-0-4" type="submit">
+										Filter
+									</button>
+								</div>
+
+								<div class="s-text3 p-t-10 p-b-10">
+									Range: $<span id="value-lower">10</span> - $<span id="value-upper">10000</span>
+								</div>
+							</div>
+						</div>
+
+						<div class="filter-color p-t-22 p-b-50 bo3">
+							<div class="m-text15 p-b-12">
+								Color
+							</div>
+
+							<ul class="flex-w">
+								<li class="m-r-10">
+									<input class="checkbox-color-filter" id="color-filter1" type="checkbox" name="color-filter1">
+									<label class="color-filter color-filter1" for="color-filter1"></label>
+								</li>
+
+								<li class="m-r-10">
+									<input class="checkbox-color-filter" id="color-filter2" type="checkbox" name="color-filter2">
+									<label class="color-filter color-filter2" for="color-filter2"></label>
+								</li>
+
+								<li class="m-r-10">
+									<input class="checkbox-color-filter" id="color-filter3" type="checkbox" name="color-filter3">
+									<label class="color-filter color-filter3" for="color-filter3"></label>
+								</li>
+
+								<li class="m-r-10">
+									<input class="checkbox-color-filter" id="color-filter4" type="checkbox" name="color-filter4">
+									<label class="color-filter color-filter4" for="color-filter4"></label>
+								</li>
+
+								<li class="m-r-10">
+									<input class="checkbox-color-filter" id="color-filter5" type="checkbox" name="color-filter5">
+									<label class="color-filter color-filter5" for="color-filter5"></label>
+								</li>
+
+								<li class="m-r-10">
+									<input class="checkbox-color-filter" id="color-filter6" type="checkbox" name="color-filter6">
+									<label class="color-filter color-filter6" for="color-filter6"></label>
+								</li>
+
+								<li class="m-r-10">
+									<input class="checkbox-color-filter" id="color-filter7" type="checkbox" name="color-filter7">
+									<label class="color-filter color-filter7" for="color-filter7"></label>
+								</li>
+							</ul>
+						</div>
+
+						<div class="search-product pos-relative bo4 of-hidden">
+							<input class="s-text7 size6 p-l-23 p-r-50" type="text" name="search-product" placeholder="Search Products...">
+
+							<button class="flex-c-m size5 ab-r-m color2 color0-hov trans-0-4">
+								<i class="fs-12 fa fa-search" aria-hidden="true"></i>
+							</button>
+						</div>
 					</div>
 				</div>
 
-				<div class="col-md-8 p-b-30">
-					<h3 class="m-text26 p-t-15 p-b-16">
-						Our story
-					</h3>
+				<div class="col-sm-6 col-md-8 col-lg-9 p-b-50">
+					<!--  -->
+					<div class="flex-sb-m flex-w p-b-35">
+						<div class="flex-w">
+							<div class="rs2-select2 bo4 of-hidden w-size12 m-t-5 m-b-5 m-r-10">
+								<select class="selection-2" name="filtro">
+									<option >Filtrar</option>
+									<option value="ses">Mais populares</option>
+									<option value="ss">Ordenar por preço: menor -> maior</option>
+									<option value="ads">Ordenar por preço: maior -> menor</option>
+								</select>
+								
+							</div>
+	
+							<div class="rs2-select2 bo4 of-hidden w-size12 m-t-5 m-b-5 m-r-10">
+								<select class="selection-2" name="sorting">
+									<option>Price</option>
+									<option>$0.00 - $50.00</option>
+									<option>$50.00 - $100.00</option>
+									<option>$100.00 - $150.00</option>
+									<option>$150.00 - $200.00</option>
+									<option>$200.00+</option>
 
-					<p class="p-b-28">
-						Phasellus egestas nisi nisi, lobortis ultricies risus semper nec. Vestibulum pharetra ac ante ut pellentesque. Curabitur fringilla dolor quis lorem accumsan, vitae molestie urna dapibus. Pellentesque porta est ac neque bibendum viverra. Vivamus lobortis magna ut interdum laoreet. Donec gravida lorem elit, quis condimentum ex semper sit amet. Fusce eget ligula magna. Aliquam aliquam imperdiet sodales. Ut fringilla turpis in vehicula vehicula. Pellentesque congue ac orci ut gravida. Aliquam erat volutpat. Donec iaculis lectus a arcu facilisis, eu sodales lectus sagittis. Etiam pellentesque, magna vel dictum rutrum, neque justo eleifend elit, vel tincidunt erat arcu ut sem. Sed rutrum, turpis ut commodo efficitur, quam velit convallis ipsum, et maximus enim ligula ac ligula. Vivamus tristique vulputate ultricies. Sed vitae ultrices orci.
-					</p>
+								</select>
+							</div>
+						</div>
 
-					<div class="bo13 p-l-29 m-l-9 p-b-10">
-						<p class="p-b-11">
-							Creativity is just connecting things. When you ask creative people how they did something, they feel a little guilty because they didn't really do it, they just saw something. It seemed obvious to them after a while.
-						</p>
-
-						<span class="s-text7">
-							- Steve Job’s
+						<span class="s-text8 p-t-5 p-b-5">
+							
 						</span>
+					</div>
+
+					<!-- Product -->
+					<div class="row">
+						
+<?php 
+
+if ($_GET['cat'] != "all") {
+	$sql = "SELECT * FROM produtos WHERE cat = '".$_GET['cat']."'";
+} else  {
+	$sql = "SELECT * FROM produtos";
+}
+	
+	$query = mysqli_query($conexao, $sql);
+
+
+	while ($dadosP = mysqli_fetch_assoc($query)) {
+		$sqlImg = "SELECT * FROM imagens WHERE id_Produto = '".$dadosP['cod']."' LIMIT 0,1";
+		$queryImg = mysqli_query($conexao, $sqlImg);
+
+		$img = mysqli_fetch_assoc($queryImg);
+
+		echo '
+			<div class="col-sm-12 col-md-6 col-lg-4 p-b-50" >
+				<!-- Block2 -->
+				<div class="block2">
+					<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
+						<div style="width:200px;height:200px;">
+						<img src="admin/img/'.$img['img'].'" alt="">
+						</div>	
+						<div class="block2-overlay trans-0-4" style="width:200px;height:200px;">
+							<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
+								<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
+								<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
+							</a>
+
+							<div class="block2-btn-addcart w-size1 trans-0-4" >
+								<!-- Button -->
+								<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
+									Add to Cart
+								</button>
+							</div>
+						</div>
+					</div>
+
+					<div class="block2-txt p-t-20">
+						<a href="product-detail.php?id='.$dadosP['cod'].'" class="block2-name dis-block s-text3 p-b-5">
+							'.$dadosP['nome'].'
+						</a>
+
+						<span class="block2-price m-text6 p-r-5">
+							R$ '.$dadosP['preco'].'
+						</span>
+				</div>
+			</div>
+
+		</div>';
+	}
+?>
+
+					<!-- Pagination -->
+					<div class="pagination flex-m flex-w p-t-26">
+						<a href="#" class="item-pagination flex-c-m trans-0-4 active-pagination">1</a>
+						<a href="#" class="item-pagination flex-c-m trans-0-4">2</a>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
 
+<?php 
+
+	
+
+?>
 
 	<!-- Footer -->
 	<footer class="bg6 p-t-45 p-b-43 p-l-45 p-r-45">
@@ -442,33 +644,26 @@
 
 			<div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
 				<h4 class="s-text12 p-b-30">
-					Categories
+					Categorias
 				</h4>
 
 				<ul>
-					<li class="p-b-9">
-						<a href="#" class="s-text7">
-							Men
-						</a>
-					</li>
+				<?php 
 
-					<li class="p-b-9">
-						<a href="#" class="s-text7">
-							Women
-						</a>
-					</li>
+					$sqlCat = "SELECT * FROM categoria";
+					$queryCat = mysqli_query($conexao, $sqlCat);
 
-					<li class="p-b-9">
-						<a href="#" class="s-text7">
-							Dresses
-						</a>
-					</li>
+					while ($cat = mysqli_fetch_assoc($queryCat)) {
+							echo '
+							<li class="p-b-9">
+								<a href="?cat='.$cat['nome_cat'].'" class="s-text7">
+									'.$cat['nome_cat'].'
+								</a>
+							</li>
+							';
+					}
 
-					<li class="p-b-9">
-						<a href="#" class="s-text7">
-							Sunglasses
-						</a>
-					</li>
+				?>
 				</ul>
 			</div>
 
@@ -580,7 +775,7 @@
 			</a>
 
 			<div class="t-center s-text8 p-t-20">
-				Copyright © 2018. All rights reserved. | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+				Copyright © 2018 All rights reserved. | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
 			</div>
 		</div>
 	</footer>
@@ -619,6 +814,55 @@
 			minimumResultsForSearch: 20,
 			dropdownParent: $('#dropDownSelect2')
 		});
+	</script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="vendor/daterangepicker/moment.min.js"></script>
+	<script type="text/javascript" src="vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="vendor/slick/slick.min.js"></script>
+	<script type="text/javascript" src="js/slick-custom.js"></script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="vendor/sweetalert/sweetalert.min.js"></script>
+	<script type="text/javascript">
+		$('.block2-btn-addcart').each(function(){
+			var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
+			$(this).on('click', function(){
+				swal(nameProduct, "is added to cart !", "success");
+			});
+		});
+
+		$('.block2-btn-addwishlist').each(function(){
+			var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
+			$(this).on('click', function(){
+				swal(nameProduct, "is added to wishlist !", "success");
+			});
+		});
+	</script>
+
+<!--===============================================================================================-->
+	<script type="text/javascript" src="vendor/noui/nouislider.min.js"></script>
+	<script type="text/javascript">
+		/*[ No ui ]
+	    ===========================================================*/
+	    var filterBar = document.getElementById('filter-bar');
+
+	    noUiSlider.create(filterBar, {
+	        start: [ 10, 10000 ],
+	        connect: true,
+	        range: {
+	            'min': 10,
+	            'max': 10000
+	        }
+	    });
+
+	    var skipValues = [
+	    document.getElementById('value-lower'),
+	    document.getElementById('value-upper')
+	    ];
+
+	    filterBar.noUiSlider.on('update', function( values, handle ) {
+	        skipValues[handle].innerHTML = Math.round(values[handle]) ;
+	    });
 	</script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
