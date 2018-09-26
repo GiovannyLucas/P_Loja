@@ -66,7 +66,7 @@
 				</div>
 
 				<span class="topbar-child1">
-					Free shipping for standard order over $100
+					Envio grátis para compras a partir de R$100
 				</span>
 
 				<div class="topbar-child2">
@@ -76,8 +76,8 @@
 
 					<div class="topbar-language rs1-select2">
 						<select class="selection-1" name="time">
-							<option>USD</option>
-							<option>EUR</option>
+							<option>D$</option>
+							<option>R$</option>
 						</select>
 					</div>
 				</div>
@@ -94,19 +94,19 @@
 					<nav class="menu">
 						<ul class="main_menu">
 							<li>
-								<a href="index.php">Home</a>
+								<a href="index.php">Menu</a>
 							</li>
 
 							<li>
-								<a href="product.php">Shop</a>
+								<a href="product.php">Fazer compras</a>
 							</li>
 
 							<li class="sale-noti">
-								<a href="product.php">Sale</a>
+								<a href="product.php">Promoções</a>
 							</li>
 
 							<li>
-								<a href="cart.php">Features</a>
+								<a href="cart.php">Destaques</a>
 							</li>
 
 							<li>
@@ -114,11 +114,11 @@
 							</li>
 
 							<li>
-								<a href="about.php">About</a>
+								<a href="about.php">Sobre</a>
 							</li>
 
 							<li>
-								<a href="contact.php">Contact</a>
+								<a href="contact.php">Contato</a>
 							</li>
 						</ul>
 					</nav>
@@ -195,7 +195,7 @@
 							<div class="header-cart-buttons">
 								<div class="header-cart-wrapbtn">
 									<!-- Button -->
-									<a href="cart.html" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+									<a href="cart.php" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
 										View Cart
 									</a>
 								</div>
@@ -216,7 +216,7 @@
 		<!-- Header Mobile -->
 		<div class="wrap_header_mobile">
 			<!-- Logo moblie -->
-			<a href="index.html" class="logo-mobile">
+			<a href="index.php" class="logo-mobile">
 				<img src="images/icons/logo.png" alt="IMG-LOGO">
 			</a>
 
@@ -293,7 +293,7 @@
 							<div class="header-cart-buttons">
 								<div class="header-cart-wrapbtn">
 									<!-- Button -->
-									<a href="cart.html" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+									<a href="cart.php" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
 										View Cart
 									</a>
 								</div>
@@ -323,7 +323,7 @@
 				<ul class="main-menu">
 					<li class="item-topbar-mobile p-l-20 p-t-8 p-b-8">
 						<span class="topbar-child1">
-							Free shipping for standard order over $100
+							Envio grátis para compras a partir de R$100
 						</span>
 					</li>
 
@@ -335,8 +335,8 @@
 
 							<div class="topbar-language rs1-select2">
 								<select class="selection-1" name="time">
-									<option>USD</option>
-									<option>EUR</option>
+									<option>D$</option>
+									<option>R$</option>
 								</select>
 							</div>
 						</div>
@@ -352,53 +352,54 @@
 						</div>
 					</li>
 
+					
 					<li class="item-menu-mobile">
-						<a href="index.html">Home</a>
+						<a href="index.php">Menu</a>
 						<ul class="sub-menu">
-							<li><a href="index.html">Homepage V1</a></li>
-							<li><a href="home-02.html">Homepage V2</a></li>
-							<li><a href="home-03.html">Homepage V3</a></li>
+							<li><a href="index.php">Homepage V1</a></li>
+							<li><a href="home-02.php">Homepage V2</a></li>
+							<li><a href="home-03.php">Homepage V3</a></li>
 						</ul>
 						<i class="arrow-main-menu fa fa-angle-right" aria-hidden="true"></i>
 					</li>
 
 					<li class="item-menu-mobile">
-						<a href="product.html">Shop</a>
+						<a href="product.php">Fazer compras</a>
 					</li>
 
 					<li class="item-menu-mobile">
-						<a href="product.html">Sale</a>
+						<a href="product.php">Promoção</a>
 					</li>
 
 					<li class="item-menu-mobile">
-						<a href="cart.html">Features</a>
+						<a href="cart.php">Destaques</a>
 					</li>
 
 					<li class="item-menu-mobile">
-						<a href="blog.html">Blog</a>
+						<a href="blog.php">Blog</a>
 					</li>
 
 					<li class="item-menu-mobile">
-						<a href="about.html">About</a>
+						<a href="about.php">Sobre</a>
 					</li>
 
 					<li class="item-menu-mobile">
-						<a href="contact.html">Contact</a>
+						<a href="contact.php">Contatos</a>
 					</li>
 				</ul>
 			</nav>
 		</div>
 	</header>
-
 	<!-- Title Page -->
-	<section class="bg-title-page p-t-50 p-b-40 flex-col-c-m" style="background-image: url(images/heading-pages-02.jpg);">
+	<section class="bg-title-page p-t-50 p-b-40 flex-col-c-m" style="background-image: url(imgs/feminina.jpg);">
 		<h2 class="l-text2 t-center">
-			Women
+			Mulher
 		</h2>
 		<p class="m-text13 t-center">
-			New Arrivals Women Collection 2018
+			Novas Coleções Femininas 2018
 		</p>
 	</section>
+
 
 
 	<!-- Content page -->
@@ -415,7 +416,7 @@
 						<ul class="p-b-54">
 							<li class="p-t-4">
 								<a href="?cat=all" class="s-text13 active1">
-									All
+									Todas
 								</a>
 							</li>
 
@@ -439,7 +440,7 @@
 
 						<div class="filter-price p-t-22 p-b-50 bo3">
 							<div class="m-text15 p-b-17">
-								Price
+								Preço
 							</div>
 
 							<div class="wra-filter-bar">
@@ -450,19 +451,19 @@
 								<div class="w-size11">
 									<!-- Button -->
 									<button class="flex-c-m size4 bg7 bo-rad-15 hov1 s-text14 trans-0-4" type="submit">
-										Filter
+										Filtros
 									</button>
 								</div>
 
 								<div class="s-text3 p-t-10 p-b-10">
-									Range: $<span id="value-lower">10</span> - $<span id="value-upper">10000</span>
+									Alcance: $<span id="value-lower">10</span> - $<span id="value-upper">10000</span>
 								</div>
 							</div>
 						</div>
 
 						<div class="filter-color p-t-22 p-b-50 bo3">
 							<div class="m-text15 p-b-12">
-								Color
+								Cor
 							</div>
 
 							<ul class="flex-w">
@@ -529,12 +530,12 @@
 	
 							<div class="rs2-select2 bo4 of-hidden w-size12 m-t-5 m-b-5 m-r-10">
 								<select class="selection-2" name="sorting">
-									<option>Price</option>
-									<option>$0.00 - $50.00</option>
-									<option>$50.00 - $100.00</option>
-									<option>$100.00 - $150.00</option>
-									<option>$150.00 - $200.00</option>
-									<option>$200.00+</option>
+									<option>Preço</option>
+									<option>R$0.00 - R$50.00</option>
+									<option>R$50.00 - R$100.00</option>
+									<option>R$100.00 - R$150.00</option>
+									<option>R$150.00 - R$200.00</option>
+									<option>R$200.00+</option>
 
 								</select>
 							</div>
@@ -624,12 +625,12 @@ if ($_GET['cat'] != "all") {
 		<div class="flex-w p-b-90">
 			<div class="w-size6 p-t-30 p-l-15 p-r-15 respon3">
 				<h4 class="s-text12 p-b-30">
-					GET IN TOUCH
+					Entrar em contato
 				</h4>
 
 				<div>
 					<p class="s-text7 w-size27">
-						Any questions? Let us know in store at 8th floor, 379 Hudson St, New York, NY 10018 or call us on (+1) 96 716 6879
+						Alguma pergunta? Deixe-nos saber na loja , 241 São Miguel, RIO GRANDE DO NORTE, RN 59920-000 ou ligue para: Tim - (84) 9 9616 8679  |  Claro - (84) 9 9108 5873
 					</p>
 
 					<div class="flex-m p-t-30">
@@ -671,28 +672,29 @@ if ($_GET['cat'] != "all") {
 				<h4 class="s-text12 p-b-30">
 					Links
 				</h4>
+
 				<ul>
 					<li class="p-b-9">
 						<a href="#" class="s-text7">
-							Search
+							Buscar
 						</a>
 					</li>
 
 					<li class="p-b-9">
 						<a href="#" class="s-text7">
-							About Us
+							Sobre nós
 						</a>
 					</li>
 
 					<li class="p-b-9">
 						<a href="#" class="s-text7">
-							Contact Us
+							Contrate-nos
 						</a>
 					</li>
 
 					<li class="p-b-9">
 						<a href="#" class="s-text7">
-							Returns
+							Retornar
 						</a>
 					</li>
 				</ul>
@@ -700,25 +702,25 @@ if ($_GET['cat'] != "all") {
 
 			<div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
 				<h4 class="s-text12 p-b-30">
-					Help
+					Ajuda
 				</h4>
 
 				<ul>
 					<li class="p-b-9">
 						<a href="#" class="s-text7">
-							Track Order
+							Acompanhar pedido
 						</a>
 					</li>
 
 					<li class="p-b-9">
 						<a href="#" class="s-text7">
-							Returns
+							Retornar
 						</a>
 					</li>
 
 					<li class="p-b-9">
 						<a href="#" class="s-text7">
-							Shipping
+							Remessa
 						</a>
 					</li>
 
@@ -732,7 +734,7 @@ if ($_GET['cat'] != "all") {
 
 			<div class="w-size8 p-t-30 p-l-15 p-r-15 respon3">
 				<h4 class="s-text12 p-b-30">
-					Newsletter
+					Boletim de notícias
 				</h4>
 
 				<form>
@@ -744,7 +746,7 @@ if ($_GET['cat'] != "all") {
 					<div class="w-size2 p-t-20">
 						<!-- Button -->
 						<button class="flex-c-m size2 bg4 bo-rad-23 hov1 m-text3 trans-0-4">
-							Subscribe
+							Inscreva-se
 						</button>
 					</div>
 
@@ -774,7 +776,7 @@ if ($_GET['cat'] != "all") {
 			</a>
 
 			<div class="t-center s-text8 p-t-20">
-				Copyright © 2018 All rights reserved. | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+				Copyright © 2018. todos os direitos reservados. | GM MODAS - Criando modas com a sua cara  <i class="fa fa-heart-o" aria-hidden="true"></i> DE <a href="https://colorlib.com" target="_blank">#ModasPraVc #ComVc</a>
 			</div>
 		</div>
 	</footer>
@@ -824,14 +826,14 @@ if ($_GET['cat'] != "all") {
 	<script type="text/javascript" src="vendor/sweetalert/sweetalert.min.js"></script>
 	<script type="text/javascript">
 		$('.block2-btn-addcart').each(function(){
-			var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
+			var nameProduct = $(this).parent().parent().parent().find('.block2-name').php();
 			$(this).on('click', function(){
 				swal(nameProduct, "is added to cart !", "success");
 			});
 		});
 
 		$('.block2-btn-addwishlist').each(function(){
-			var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
+			var nameProduct = $(this).parent().parent().parent().find('.block2-name').php();
 			$(this).on('click', function(){
 				swal(nameProduct, "is added to wishlist !", "success");
 			});
