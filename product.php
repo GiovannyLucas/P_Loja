@@ -5,15 +5,14 @@
 
 	if (!isset($_SESSION['user'])) {
 		header('location:login.php');
-	} else {
-		
 	}
 
+	$_SESSION['imgCat'] = $_GET['cat'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Product</title>
+	<title>Produto</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
@@ -45,13 +44,8 @@
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
 </head>
-<body class="animsition" onload="ler()">
+<body class="animsition">
 
-<script type="text/javascript">
-	function ler() {
-		<?php $_GET['cat'] = "all"; ?>
-	}
-</script>
 	<!-- Header -->
 	<header class="header1">
 		<!-- Header desktop -->
@@ -98,7 +92,7 @@
 							</li>
 
 							<li>
-								<a href="product.php">Fazer compras</a>
+								<a href="product.php?cat=all">Fazer compras</a>
 							</li>
 
 							<li class="sale-noti">
@@ -118,7 +112,7 @@
 							</li>
 
 							<li>
-								<a href="contact.php">Contato</a>
+								<a href="contact.php">Contatos</a>
 							</li>
 						</ul>
 					</nav>
@@ -355,16 +349,11 @@
 					
 					<li class="item-menu-mobile">
 						<a href="index.php">Menu</a>
-						<ul class="sub-menu">
-							<li><a href="index.php">Homepage V1</a></li>
-							<li><a href="home-02.php">Homepage V2</a></li>
-							<li><a href="home-03.php">Homepage V3</a></li>
-						</ul>
 						<i class="arrow-main-menu fa fa-angle-right" aria-hidden="true"></i>
 					</li>
 
 					<li class="item-menu-mobile">
-						<a href="product.php">Fazer compras</a>
+						<a href="product.php?cat=all">Fazer compras</a>
 					</li>
 
 					<li class="item-menu-mobile">
@@ -391,13 +380,19 @@
 		</div>
 	</header>
 	<!-- Title Page -->
-	<section class="bg-title-page p-t-50 p-b-40 flex-col-c-m" style="background-image: url(imgs/feminina.jpg);">
+
+	<section class="bg-title-page p-t-50 p-b-40 flex-col-c-m" style="background-image: url(imgs/all.jpg)">
+		<section class="bg-title-page p-t-50 p-b-40 flex-col-c-m" style="background-image: url(imgs/<?php echo $_SESSION['imgCat']; ?>.jpg); margin: -50px -100px -40px -100px">
 		<h2 class="l-text2 t-center">
-			Mulher
+			<?php
+				echo $_SESSION['imgCat'];	
+					
+			?>
 		</h2>
 		<p class="m-text13 t-center">
-			Novas Coleções Femininas 2018
+			Novas Coleções 2018!
 		</p>
+		</section>		
 	</section>
 
 
@@ -412,7 +407,7 @@
 						<h4 class="m-text14 p-b-7">
 							Categorias
 						</h4>
-
+			<form method="get">
 						<ul class="p-b-54">
 							<li class="p-t-4">
 								<a href="?cat=all" class="s-text13 active1">
@@ -436,7 +431,8 @@
 					}
 
 				?>
-						</ul> 	
+						</ul>
+				</form>
 
 						<div class="filter-price p-t-22 p-b-50 bo3">
 							<div class="m-text15 p-b-17">
@@ -505,7 +501,12 @@
 						</div>
 
 						<div class="search-product pos-relative bo4 of-hidden">
-							<input class="s-text7 size6 p-l-23 p-r-50" type="text" name="search-product" placeholder="Search Products...">
+						
+						<script src="javascript.js"></script>
+						<!-- BUSCA -->
+						<form>	
+							<input class="s-text7 size6 p-l-23 p-r-50" type="text" name="campo" id="campo" placeholder="Buscar Produtos..."> 
+						</form>
 
 							<button class="flex-c-m size5 ab-r-m color2 color0-hov trans-0-4">
 								<i class="fs-12 fa fa-search" aria-hidden="true"></i>
@@ -519,27 +520,35 @@
 					<div class="flex-sb-m flex-w p-b-35">
 						<div class="flex-w">
 							<div class="rs2-select2 bo4 of-hidden w-size12 m-t-5 m-b-5 m-r-10">
+						<form method="GET">
 								<select class="selection-2" name="filtro">
-									<option >Filtrar</option>
-									<option value="ses">Mais populares</option>
-									<option value="ss">Ordenar por preço: menor -> maior</option>
-									<option value="ads">Ordenar por preço: maior -> menor</option>
+									<option value="nada">Filtrar</option>
+									<option value="asc">A - Z</option>
+									<option value="desc">Z - A</option>
+									<option value="mM">Por preço: menor -> maior</option>
+									<option value="Mm">Por preço: maior -> menor</option>
 								</select>
-								
 							</div>
-	
+								<button class="flex-c-m bg7 bo-rad-15 hov1 s-text14 trans-0-4" style="margin-right: 10px;" type="submit">
+										Filtrar
+								</button>
+						</form>	
 							<div class="rs2-select2 bo4 of-hidden w-size12 m-t-5 m-b-5 m-r-10">
-								<select class="selection-2" name="sorting">
-									<option>Preço</option>
-									<option>R$0.00 - R$50.00</option>
-									<option>R$50.00 - R$100.00</option>
-									<option>R$100.00 - R$150.00</option>
-									<option>R$150.00 - R$200.00</option>
-									<option>R$200.00+</option>
-
+						<form method="get">	
+								<select class="selection-2" name="fPreco">
+									<option value="">Preço</option>
+									<option value="1">R$0.00 - R$50.00</option>
+									<option value="2">R$50.00 - R$100.00</option>
+									<option value="3">R$100.00 - R$150.00</option>
+									<option value="4">R$150.00 - R$200.00</option>
+									<option value="5">R$200.00+</option>
 								</select>
 							</div>
+							<button class="flex-c-m bg7 bo-rad-15 hov1 s-text14 trans-0-4" style="margin-right: 10px;" type="submit">
+										F. Preço
+								</button>
 						</div>
+						</form>
 
 						<span class="s-text8 p-t-5 p-b-5">
 							
@@ -550,22 +559,71 @@
 					<div class="row">
 						
 <?php 
+if (isset($_GET['cat'])) {
+	if ($_GET['cat'] != "all") {
+		$sql = "SELECT * FROM produtos WHERE cat = '".$_GET['cat']."'";
+		$_SESSION['imgCat'] = $_GET['cat'];
+	} else 
+	if ($_GET['cat'] == "all") {
+		$sql = "SELECT * FROM produtos";
+		$_SESSION['imgCat'] = "all";
+	}
 
-if ($_GET['cat'] != "all") {
-	$sql = "SELECT * FROM produtos WHERE cat = '".$_GET['cat']."'";
-} else  {
-	$sql = "SELECT * FROM produtos";
+} else
+if (isset($_GET['filtro'])) {
+	$_SESSION['imgCat'] = "all";			 
+	if ($_GET['filtro'] == "nada") {
+		$sql = "SELECT * FROM produtos";
+	} else
+	if ($_GET['filtro'] == "asc") {
+		$sql = "SELECT * FROM produtos ORDER BY nome ASC";
+	} else
+	if ($_GET['filtro'] == "desc") {
+		$sql = "SELECT * FROM produtos ORDER BY nome DESC";
+	} else
+	if ($_GET['filtro'] == "mM") {
+		$sql = "SELECT * FROM produtos ORDER BY preco ASC";
+	} else
+	if ($_GET['filtro'] == "Mm") {
+		$sql = "SELECT * FROM produtos ORDER BY preco DESC";
+	}
+} else
+if (isset($_GET['fPreco'])) {
+	$_SESSION['imgCat'] = "all";
+	if ($_GET['fPreco'] == "1") {
+		$sql = "SELECT * FROM produtos WHERE preco BETWEEN 0 AND 50";
+	} else
+	if ($_GET['fPreco'] == "2") {
+		$sql = "SELECT * FROM produtos WHERE preco BETWEEN 51 AND 100";
+	} else
+	if ($_GET['fPreco'] == "3") {
+		$sql = "SELECT * FROM produtos WHERE preco BETWEEN 101 AND 150";
+	} else
+	if ($_GET['fPreco'] == "4") {
+		$sql = "SELECT * FROM produtos WHERE preco BETWEEN 151 AND 200";
+	} else
+	if ($_GET['fPreco'] == "5") {
+		$sql = "SELECT * FROM produtos WHERE preco BETWEEN 201 AND 10000";
+	} else
+	if ($_GET['fPreco'] == "") {
+		$sql = "SELECT * FROM produtos";
+	} 
+} else
+if (isset($_POST['campo'])) {
+	$sql = "SELECT * FROM produtos WHERE nome LIKE '%".$_POST['campo']."%'";
 }
 	
-	$query = mysqli_query($conexao, $sql);
+//AUTOMATIZAR A BUSCA!!!
+
+$queryBusca = mysqli_query($conexao, $sql);
 
 
-	while ($dadosP = mysqli_fetch_assoc($query)) {
+	while ($dadosP = mysqli_fetch_assoc($queryBusca)) {
 		$sqlImg = "SELECT * FROM imagens WHERE id_Produto = '".$dadosP['cod']."' LIMIT 0,1";
 		$queryImg = mysqli_query($conexao, $sqlImg);
 
 		$img = mysqli_fetch_assoc($queryImg);
-
+echo "<div id='resultado'>";
 		echo '
 			<div class="col-sm-12 col-md-6 col-lg-4 p-b-50" >
 				<!-- Block2 -->
@@ -590,7 +648,7 @@ if ($_GET['cat'] != "all") {
 					</div>
 
 					<div class="block2-txt p-t-20">
-						<a href="product-detail.php?id='.$dadosP['cod'].'" class="block2-name dis-block s-text3 p-b-5">
+						<a href="product-detail.php?cat='.$_GET['cat'].'&prod='.$dadosP['nome'].'&id='.$dadosP['cod'].'" class="block2-name dis-block s-text3 p-b-5">
 							'.$dadosP['nome'].'
 						</a>
 
@@ -601,7 +659,9 @@ if ($_GET['cat'] != "all") {
 			</div>
 
 		</div>';
+echo "</div>";
 	}
+	
 ?>
 
 					<!-- Pagination -->

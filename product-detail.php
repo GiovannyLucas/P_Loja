@@ -1,7 +1,11 @@
+<?php 
+	session_start();
+	include('config.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>DETALHES DO PRODUTOS</title>
+	<title>GM MODAS</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
@@ -52,7 +56,7 @@
 
 				<div class="topbar-child2">
 					<span class="topbar-email">
-						gmmodas@gmail.com
+						<?php echo $_SESSION['user']; ?>
 					</span>
 
 					<div class="topbar-language rs1-select2">
@@ -76,15 +80,10 @@
 						<ul class="main_menu">
 							<li>
 								<a href="index.php">Menu</a>
-								<ul class="sub_menu">
-									<li><a href="index.php">Homepage V1</a></li>
-									<li><a href="home-02.php">Homepage V2</a></li>
-									<li><a href="home-03.php">Homepage V3</a></li>
-								</ul>
 							</li>
 
 							<li>
-								<a href="product.php">Fazer compras</a>
+								<a href="product.php?cat=all">Fazer compras</a>
 							</li>
 
 							<li class="sale-noti">
@@ -316,7 +315,7 @@
 					<li class="item-topbar-mobile p-l-20 p-t-8 p-b-8">
 						<div class="topbar-child2-mobile">
 							<span class="topbar-email">
-								fashe@example.com
+								<?php echo $_SESSION['user']; ?>
 							</span>
 
 							<div class="topbar-language rs1-select2">
@@ -378,82 +377,89 @@
 
 	<!-- breadcrumb -->
 	<div class="bread-crumb bgwhite flex-w p-l-52 p-r-15 p-t-30 p-l-15-sm">
-		<a href="index.php" class="s-text16">
-			Homens
+		<a href="product.php?cat=all" class="s-text16">
+			Produtos
 			<i class="fa fa-angle-right m-l-8 m-r-9" aria-hidden="true"></i>
 		</a>
 
-		<a href="product.php" class="s-text16">
-			Mulheres
+		<a href="product.php?cat=<?php echo $_GET['cat']; ?>" class="s-text16">
+			<?php echo $_GET['cat']; ?>
 			<i class="fa fa-angle-right m-l-8 m-r-9" aria-hidden="true"></i>
 		</a>
 
 		<a href="#" class="s-text16">
-			Camiseta
+			<?php echo $_GET['prod']; ?>
 			<i class="fa fa-angle-right m-l-8 m-r-9" aria-hidden="true"></i>
 		</a>
-
-		<span class="s-text17">
-			Camisas com detalhes na manga
-		</span>
 	</div>
 
 	<!-- Product Detail -->
-	<div class="container bgwhite p-t-35 p-b-80">
-		<div class="flex-w flex-sb">
-			<div class="w-size13 p-t-30 respon5">
-				<div class="wrap-slick3 flex-sb flex-w">
-					<div class="wrap-slick3-dots"></div>
+	<?php 
+	if (isset($_GET['id'])) {
 
-					<div class="slick3">
-						<div class="item-slick3" data-thumb="images/thumb-item-01.jpg">
-							<div class="wrap-pic-w">
-								<img src="images/product-detail-01.jpg" alt="IMG-PRODUCT">
-							</div>
-						</div>
+		$sqlImg = "SELECT * FROM imagens WHERE id_Produto = '".$_GET['id']."'";
+		$queryImg = mysqli_query($conexao, $sqlImg);
 
-						<div class="item-slick3" data-thumb="images/thumb-item-02.jpg">
-							<div class="wrap-pic-w">
-								<img src="images/product-detail-02.jpg" alt="IMG-PRODUCT">
-							</div>
-						</div>
+echo '		
+			<div class="container bgwhite p-t-35 p-b-80">
+				<div class="flex-w flex-sb">
+					<div class="w-size13 p-t-30 respon5">
+						<div class="wrap-slick3 flex-sb flex-w">
+							<div class="wrap-slick3-dots"></div>
+								<div class="slick3">
+';
+		while ($imgs = mysqli_fetch_assoc($queryImg)) {
+	
+			echo '
+								<div class="item-slick3" data-thumb="admin/img/'.$imgs['img'].'">
+									<div class="wrap-pic-w">
+										<img src="admin/img/'.$imgs['img'].'" alt="IMG-PRODUCT">
+									</div>
+								</div>
 
-						<div class="item-slick3" data-thumb="images/thumb-item-03.jpg">
-							<div class="wrap-pic-w">
-								<img src="images/product-detail-03.jpg" alt="IMG-PRODUCT">
+							
+			';
+		}
+echo '
 							</div>
 						</div>
 					</div>
-				</div>
-			</div>
-
+';		
+	}
+	?>
 			<div class="w-size14 p-t-30 respon5">
+				<?php 
+				if (isset($_GET['id'])) {
+					
+					$sql = "SELECT * FROM produtos WHERE cod = '".$_GET['id']."'";
+					$query = mysqli_query($conexao, $sql);
+
+					$dados = mysqli_fetch_assoc($query);
+
+
+					$sqlImg = "SELECT * FROM imagens WHERE id_Produto = '".$_GET['id']."'";
+					$queryImg = mysqli_query($conexao, $sqlImg);
+
+					$imgs = mysqli_fetch_assoc($queryImg);
+				}
+				?>
 				<h4 class="product-detail-name m-text16 p-b-13">
-					Boxy T-Shirt with Roll Sleeve Detail
+				<?php echo $dados['nome']; ?>
 				</h4>
 
 				<span class="m-text17">
-					$22
+					<?php echo "R$ ".$dados['preco']; ?>
 				</span>
 
-				<p class="s-text8 p-t-10">
-					Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligula. Mauris consequat ornare feugiat.
-				</p>
-
-				<!--  -->
 				<div class="p-t-33 p-b-60">
 					<div class="flex-m flex-w p-b-10">
 						<div class="s-text15 w-size15 t-center">
-							Size
+							Tamanho
 						</div>
 
 						<div class="rs2-select2 rs3-select2 bo4 of-hidden w-size16">
-							<select class="selection-2" name="size">
-								<option>Escolha uma opção</option>
-								<option>Size S</option>
-								<option>Size M</option>
-								<option>Size L</option>
-								<option>Size XL</option>
+							<select class="selection-2" name="tam">
+								<option><?php echo $dados['tamanho']; ?></option>
 							</select>
 						</div>
 					</div>
@@ -465,11 +471,7 @@
 
 						<div class="rs2-select2 rs3-select2 bo4 of-hidden w-size16">
 							<select class="selection-2" name="color">
-								<option>Choose an option</option>
-								<option>Gray</option>
-								<option>Red</option>
-								<option>Black</option>
-								<option>Blue</option>
+								<option><?php echo $dados['cor']; ?></option>
 							</select>
 						</div>
 					</div>
@@ -499,8 +501,8 @@
 				</div>
 
 				<div class="p-b-45">
-					<span class="s-text8 m-r-35">SKU: MUG-01</span>
-					<span class="s-text8">Categories: Mug, Design</span>
+					<span class="s-text8 m-r-35">Código do produto: <?php echo $dados['cod']; ?></span>
+					<span class="s-text8">Categoria: <?php echo $dados['cat']; ?></span>
 				</div>
 
 				<!--  -->
@@ -513,21 +515,21 @@
 
 					<div class="dropdown-content dis-none p-t-15 p-b-23">
 						<p class="s-text8">
-							Fusce ornare mi vel risus porttitor dignissim. Nunc eget risus at ipsum blandit ornare vel sed velit. Proin gravida arcu nisl, a dignissim mauris placerat
+							<?php echo $dados['descricao']; ?>
 						</p>
 					</div>
 				</div>
 
 				<div class="wrap-dropdown-content bo7 p-t-15 p-b-14">
 					<h5 class="js-toggle-dropdown-content flex-sb-m cs-pointer m-text19 color0-hov trans-0-4">
-						Additional information
+						Informações adicionais
 						<i class="down-mark fs-12 color1 fa fa-minus dis-none" aria-hidden="true"></i>
 						<i class="up-mark fs-12 color1 fa fa-plus" aria-hidden="true"></i>
 					</h5>
 
 					<div class="dropdown-content dis-none p-t-15 p-b-23">
 						<p class="s-text8">
-							Fusce ornare mi vel risus porttitor dignissim. Nunc eget risus at ipsum blandit ornare vel sed velit. Proin gravida arcu nisl, a dignissim mauris placerat
+							<?php echo $dados['info_add']; ?>
 						</p>
 					</div>
 				</div>
@@ -544,7 +546,7 @@
 							Fusce ornare mi vel risus porttitor dignissim. Nunc eget risus at ipsum blandit ornare vel sed velit. Proin gravida arcu nisl, a dignissim mauris placerat
 						</p>
 					</div>
-				</div>
+				</div> <!--Fim da DIV-->
 			</div>
 		</div>
 	</div>
