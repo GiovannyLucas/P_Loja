@@ -6,7 +6,7 @@ error_reporting(0);
 
 <div style="margin: 0 15px;">
 	<form method="post" enctype="multipart/form-data">
-		<input type="hidden" id="page" name="page" value="cad_Produto">
+		<input type="hidden" id="page" name="page" value="cadProduto">
 
 		<div class="form-group">
 			<label for="cod">Código do produto: </label>
@@ -16,12 +16,13 @@ error_reporting(0);
 			<label for="nome">Nome: </label>
 			<input type="text" id="nome" name="nome" class="form-control" required>
 		</div>
-		<div class="form-group">
-			<label for="preco">Preço R$: </label>
-			<input type="text" id="preco" name="preco" class="form-control" placeholder="99.99" required>
+			<label>Preço: </label>
+		<div class="input-group">
+			<span class="input-group-addon">R$</span>
+			<input type="number" id="preco" name="preco" class="form-control" placeholder="99.99" required>
 		</div>
-		<div class="form-group">
 			<label for="categoria">Categoria: </label>
+		<div class="form-group">
 			<select name="categoria" class="form-control" required>
 			<?php
 				$sqlCat = "SELECT * FROM categoria";
@@ -35,6 +36,30 @@ error_reporting(0);
 			?>
 			</select>
 		</div>
+		<div class="form-group">
+			<label for="color">Cor: </label>
+			<select name="color" class="form-control" required>
+			<?php
+				$sqlCor = "SELECT * FROM cor";
+				$queryCor = mysqli_query($conexao, $sqlCor);
+
+				while ($optC = mysqli_fetch_assoc($queryCor)) {
+					echo "
+						<option value='".$optC['nome_cor']."'>".$optC['nome_cor']."</option>
+					";
+				}
+			?>
+			</select>
+		</div>
+		<div class="form-group">
+			<label for="tam">Tamanho: </label>
+			<input type="radio" name="tam" value="PP"><span> PP</span>
+			<input type="radio" name="tam" value="P"><span> P</span>
+			<input type="radio" name="tam" value="M"><span> M</span>
+			<input type="radio" name="tam" value="G"><span> G</span>
+			<input type="radio" name="tam" value="GG"><span> GG</span>
+			<input type="radio" name="tam" value="XG"><span> XG</span>
+		</div>				
 		<div class="form-group">
 			<label for="img1">Imagem: </label>
 			<input type="file" name="arquivo[]" multiple="multiple">
@@ -60,7 +85,7 @@ if (isset($_POST['nome'])) {
 	$diretorio = "img/";
     $arquivo = $_FILES['arquivo'];
 
-    $sqlAdd = "INSERT INTO produtos VALUES (DEFAULT,'".$_POST['nome']."','".$_POST['preco']."','".$_POST['categoria']."','".$_POST['descricao']."','".$_POST['info_add']."',DEFAULT,DEFAULT)";
+    $sqlAdd = "INSERT INTO produtos VALUES (DEFAULT,'".$_POST['nome']."','".$_POST['preco']."','".$_POST['categoria']."','".$_POST['descricao']."','".$_POST['info_add']."','".$_POST['color']."','".$_POST['tam']."')";
     $queryAdd = mysqli_query($conexao, $sqlAdd);
 
     $sqlLID = "SELECT LAST_INSERT_ID()";
@@ -81,7 +106,7 @@ if (isset($_POST['nome'])) {
 
 	
 	if ($queryAdd) {
-			echo "<script>alert('Produto cadastrado com Sucesso!');
+			echo "<script>alert('Produto cadastrado com sucesso!');
 						location.href = '?page=cadProduto';</script>";
 	} else {
 			echo "<script>alert('Produto não cadastrado!');</script>";

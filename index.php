@@ -1,5 +1,8 @@
 <?php
 	session_start(); 
+	if (!$_SESSION['user']) {
+		header('location: login.php');
+	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -91,7 +94,7 @@
 							</li>
 
 							<li>
-								<a href="product.php">Fazer compras</a>
+								<a href="product.php?cat=all">Fazer compras</a>
 							</li>
 
 							<li class="sale-noti">
@@ -349,8 +352,6 @@
 						<a href="index.php">Home</a>
 						<ul class="sub-menu">
 							<li><a href="index.php">Menu 1</a></li>
-							<li><a href="home-02.php">Menu 2</a></li>
-							<li><a href="home-03.php">Menu 3</a></li>
 						</ul>
 						<i class="arrow-main-menu fa fa-angle-right" aria-hidden="true"></i>
 					</li>
@@ -387,7 +388,7 @@
 	<section class="slide1">
 		<div class="wrap-slick1">
 			<div class="slick1">
-				<div class="item-slick1 item1-slick1" style="background-image: url(imgs/feminina.jpg);">
+				<div class="item-slick1 item1-slick1" style="background-image: url(imgs/Feminino.jpg);">
 					<div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
 						<span class="caption1-slide1 m-text1 t-center animated visible-false m-b-15" data-appear="fadeInDown">
 							Coleção feminina 2018

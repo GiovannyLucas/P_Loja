@@ -504,7 +504,7 @@
 						
 						<script src="javascript.js"></script>
 						<!-- BUSCA -->
-						<form>	
+						<form method="get">	
 							<input class="s-text7 size6 p-l-23 p-r-50" type="text" name="campo" id="campo" placeholder="Buscar Produtos..."> 
 						</form>
 
@@ -567,6 +567,9 @@ if (isset($_GET['cat'])) {
 	if ($_GET['cat'] == "all") {
 		$sql = "SELECT * FROM produtos";
 		$_SESSION['imgCat'] = "all";
+	} else 
+	if (!isset($_GET['cat'])) {
+		$sql = "SELECT * FROM produtos";
 	}
 
 } else
@@ -586,6 +589,9 @@ if (isset($_GET['filtro'])) {
 	} else
 	if ($_GET['filtro'] == "Mm") {
 		$sql = "SELECT * FROM produtos ORDER BY preco DESC";
+	} else 
+	if (!isset($_GET['filtro'])) {
+		$sql = "SELECT * FROM produtos";
 	}
 } else
 if (isset($_GET['fPreco'])) {
@@ -604,13 +610,12 @@ if (isset($_GET['fPreco'])) {
 	} else
 	if ($_GET['fPreco'] == "5") {
 		$sql = "SELECT * FROM produtos WHERE preco BETWEEN 201 AND 10000";
-	} else
-	if ($_GET['fPreco'] == "") {
+	} else {
 		$sql = "SELECT * FROM produtos";
 	} 
 } else
-if (isset($_POST['campo'])) {
-	$sql = "SELECT * FROM produtos WHERE nome LIKE '%".$_POST['campo']."%'";
+if (isset($_GET['campo'])) {
+	$sql = "SELECT * FROM produtos WHERE nome LIKE '%".$_GET['campo']."%'";
 }
 	
 //AUTOMATIZAR A BUSCA!!!
@@ -623,7 +628,7 @@ $queryBusca = mysqli_query($conexao, $sql);
 		$queryImg = mysqli_query($conexao, $sqlImg);
 
 		$img = mysqli_fetch_assoc($queryImg);
-echo "<div id='resultado'>";
+
 		echo '
 			<div class="col-sm-12 col-md-6 col-lg-4 p-b-50" >
 				<!-- Block2 -->
@@ -659,7 +664,6 @@ echo "<div id='resultado'>";
 			</div>
 
 		</div>';
-echo "</div>";
 	}
 	
 ?>

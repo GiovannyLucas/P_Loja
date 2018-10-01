@@ -1,7 +1,13 @@
+<?php
+	session_start(); 
+	if (!$_SESSION['user']) {
+		header('location: login.php');
+	}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Contact</title>
+	<title>Contato</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
@@ -49,18 +55,18 @@
 				</div>
 
 				<span class="topbar-child1">
-					Free shipping for standard order over $100
+					Envio grátis para compras a partir de R$100
 				</span>
 
 				<div class="topbar-child2">
 					<span class="topbar-email">
-						fashe@example.com
+						<?php echo $_SESSION['user']; ?>
 					</span>
 
 					<div class="topbar-language rs1-select2">
 						<select class="selection-1" name="time">
-							<option>USD</option>
-							<option>EUR</option>
+							<option>D$</option>
+							<option>R$</option>
 						</select>
 					</div>
 				</div>
@@ -77,36 +83,31 @@
 					<nav class="menu">
 						<ul class="main_menu">
 							<li>
-								<a href="index.html">Home</a>
-								<ul class="sub_menu">
-									<li><a href="index.html">Homepage V1</a></li>
-									<li><a href="home-02.html">Homepage V2</a></li>
-									<li><a href="home-03.html">Homepage V3</a></li>
-								</ul>
+								<a href="index.php">Menu</a>
 							</li>
 
 							<li>
-								<a href="product.html">Shop</a>
+								<a href="product.php?cat=all">Fazer compras</a>
 							</li>
 
 							<li class="sale-noti">
-								<a href="product.html">Sale</a>
+								<a href="product.php">Promoções</a>
 							</li>
 
 							<li>
-								<a href="cart.html">Features</a>
+								<a href="cart.php">Destaques</a>
 							</li>
 
 							<li>
-								<a href="blog.html">Blog</a>
+								<a href="blog.php">Blog</a>
 							</li>
 
 							<li>
-								<a href="about.html">About</a>
+								<a href="about.php">Sobre</a>
 							</li>
 
 							<li>
-								<a href="contact.php">Contact</a>
+								<a href="contact.php">Contato</a>
 							</li>
 						</ul>
 					</nav>
@@ -341,37 +342,32 @@
 					</li>
 
 					<li class="item-menu-mobile">
-						<a href="index.html">Home</a>
-						<ul class="sub-menu">
-							<li><a href="index.html">Homepage V1</a></li>
-							<li><a href="home-02.html">Homepage V2</a></li>
-							<li><a href="home-03.html">Homepage V3</a></li>
-						</ul>
+						<a href="index.php">Menu</a>
 						<i class="arrow-main-menu fa fa-angle-right" aria-hidden="true"></i>
 					</li>
 
 					<li class="item-menu-mobile">
-						<a href="product.html">Shop</a>
+						<a href="product.php">Fazer compras</a>
 					</li>
 
 					<li class="item-menu-mobile">
-						<a href="product.html">Sale</a>
+						<a href="product.php">Promoção</a>
 					</li>
 
 					<li class="item-menu-mobile">
-						<a href="cart.html">Features</a>
+						<a href="cart.php">Destaques</a>
 					</li>
 
 					<li class="item-menu-mobile">
-						<a href="blog.html">Blog</a>
+						<a href="blog.php">Blog</a>
 					</li>
 
 					<li class="item-menu-mobile">
-						<a href="about.html">About</a>
+						<a href="about.php">Sobre</a>
 					</li>
 
 					<li class="item-menu-mobile">
-						<a href="contact.php">Contact</a>
+						<a href="contact.php">Contatos</a>
 					</li>
 				</ul>
 			</nav>
@@ -379,7 +375,7 @@
 	</header>
 
 	<!-- Title Page -->
-	<section class="bg-title-page p-t-40 p-b-50 flex-col-c-m" style="background-image: url(images/heading-pages-06.jpg);">
+	<section class="bg-title-page p-t-40 p-b-50 flex-col-c-m" style="background-image: url(imgs/all.jpg);">
 		<h2 class="l-text2 t-center">
 			Contact
 		</h2>
@@ -461,12 +457,12 @@ if (isset($_POST['msg'])) {
 		<div class="flex-w p-b-90">
 			<div class="w-size6 p-t-30 p-l-15 p-r-15 respon3">
 				<h4 class="s-text12 p-b-30">
-					GET IN TOUCH
+					Entrar em contato
 				</h4>
 
 				<div>
 					<p class="s-text7 w-size27">
-						Any questions? Let us know in store at 8th floor, 379 Hudson St, New York, NY 10018 or call us on (+1) 96 716 6879
+						Alguma pergunta? Deixe-nos saber na loja , 241 São Miguel, RIO GRANDE DO NORTE, RN 59920-000 ou ligue para: Tim - (84) 9 9616 8679  |  Claro - (84) 9 9108 5873
 					</p>
 
 					<div class="flex-m p-t-30">
@@ -481,33 +477,26 @@ if (isset($_POST['msg'])) {
 
 			<div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
 				<h4 class="s-text12 p-b-30">
-					Categories
+					Categorias
 				</h4>
 
 				<ul>
-					<li class="p-b-9">
-						<a href="#" class="s-text7">
-							Men
-						</a>
-					</li>
+				<?php 
 
-					<li class="p-b-9">
-						<a href="#" class="s-text7">
-							Women
-						</a>
-					</li>
+					$sqlCat = "SELECT * FROM categoria";
+					$queryCat = mysqli_query($conexao, $sqlCat);
 
-					<li class="p-b-9">
-						<a href="#" class="s-text7">
-							Dresses
-						</a>
-					</li>
+					while ($cat = mysqli_fetch_assoc($queryCat)) {
+							echo '
+							<li class="p-b-9">
+								<a href="product.php?cat='.$cat['nome_cat'].'" class="s-text7">
+									'.$cat['nome_cat'].'
+								</a>
+							</li>
+							';
+					}
 
-					<li class="p-b-9">
-						<a href="#" class="s-text7">
-							Sunglasses
-						</a>
-					</li>
+				?>
 				</ul>
 			</div>
 
@@ -519,25 +508,25 @@ if (isset($_POST['msg'])) {
 				<ul>
 					<li class="p-b-9">
 						<a href="#" class="s-text7">
-							Search
+							Buscar
 						</a>
 					</li>
 
 					<li class="p-b-9">
 						<a href="#" class="s-text7">
-							About Us
+							Sobre nós
 						</a>
 					</li>
 
 					<li class="p-b-9">
 						<a href="#" class="s-text7">
-							Contact Us
+							Contrate-nos
 						</a>
 					</li>
 
 					<li class="p-b-9">
 						<a href="#" class="s-text7">
-							Returns
+							Retornar
 						</a>
 					</li>
 				</ul>
@@ -545,25 +534,25 @@ if (isset($_POST['msg'])) {
 
 			<div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
 				<h4 class="s-text12 p-b-30">
-					Help
+					Ajuda
 				</h4>
 
 				<ul>
 					<li class="p-b-9">
 						<a href="#" class="s-text7">
-							Track Order
+							Acompanhar pedido
 						</a>
 					</li>
 
 					<li class="p-b-9">
 						<a href="#" class="s-text7">
-							Returns
+							Retornar
 						</a>
 					</li>
 
 					<li class="p-b-9">
 						<a href="#" class="s-text7">
-							Shipping
+							Remessa
 						</a>
 					</li>
 
@@ -577,7 +566,7 @@ if (isset($_POST['msg'])) {
 
 			<div class="w-size8 p-t-30 p-l-15 p-r-15 respon3">
 				<h4 class="s-text12 p-b-30">
-					Newsletter
+					Boletim de notícias
 				</h4>
 
 				<form>
@@ -589,7 +578,7 @@ if (isset($_POST['msg'])) {
 					<div class="w-size2 p-t-20">
 						<!-- Button -->
 						<button class="flex-c-m size2 bg4 bo-rad-23 hov1 m-text3 trans-0-4">
-							Subscribe
+							Inscreva-se
 						</button>
 					</div>
 
@@ -619,7 +608,7 @@ if (isset($_POST['msg'])) {
 			</a>
 
 			<div class="t-center s-text8 p-t-20">
-				Copyright © 2018 All rights reserved. | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+				Copyright © 2018. todos os direitos reservados. | GM MODAS - Criando modas com a sua cara  <i class="fa fa-heart-o" aria-hidden="true"></i> DE <a href="https://colorlib.com" target="_blank">#ModasPraVc #ComVc</a>
 			</div>
 		</div>
 	</footer>
