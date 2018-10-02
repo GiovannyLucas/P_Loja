@@ -7,7 +7,23 @@
 		header('location:login.php');
 	}
 
-	$_SESSION['imgCat'] = $_GET['cat'];
+	if (!isset($_SESSION['carrinho'])) {
+		$_SESSION['carrinho'] = array();
+	}
+
+	if (isset($_GET['acao'])) {
+		if ($_GET['acao'] == "add") {
+			$id = $_GET['id'];
+			if (!isset($_SESSION['carrinho'][$id])) {
+				$_SESSION['carrinho'][$id] = 1;
+			} else {
+				$_SESSION['carrinho'][$id] += 1;
+			}
+		}
+
+	}
+
+	//$_SESSION['imgCat'] = $_GET['cat'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -128,63 +144,56 @@
 
 					<div class="header-wrapicon2">
 						<img src="images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
-						<span class="header-icons-noti">0</span>
+						<span class="header-icons-noti"><?php 
+							echo count($_SESSION['carrinho']);
+						?></span>
 
 						<!-- Header cart noti -->
 						<div class="header-cart header-dropdown">
 							<ul class="header-cart-wrapitem">
-								<li class="header-cart-item">
-									<div class="header-cart-item-img">
-										<img src="images/item-cart-01.jpg" alt="IMG">
-									</div>
+							<?php
+							error_reporting(0); 
+							$total = 0;
 
+								foreach ($_SESSION['carrinho'] as $id => $qnt) {
+									$sqlL = "SELECT * FROM produtos WHERE cod = '".$id."'";
+									$query = mysqli_query($conexao, $sqlL);
+
+									$prods = mysqli_fetch_assoc($query);
+									
+									$sqlImg = "SELECT * FROM imagens WHERE id_Produto = '$id' LIMIT 0,1";
+									$queryImg = mysqli_query($conexao, $sqlImg);
+
+									$Img = mysqli_fetch_assoc($queryImg);
+
+									$total += $qnt * $prods['preco'];
+							echo'
+								<li class="header-cart-item">
+									
+										<a class="header-cart-item-img" href="?acao=del&id=">
+										<img src="admin/img/'.$Img['img'].'" alt="IMG">
+										</a>
+									
 									<div class="header-cart-item-txt">
 										<a href="#" class="header-cart-item-name">
-											White Shirt With Pleat Detail Back
+											'.$prods['nome'].'
 										</a>
 
 										<span class="header-cart-item-info">
-											1 x $19.00
+											'.$qnt.'x'.$prods['preco'].'
 										</span>
 									</div>
-								</li>
+								</li>';
+							}
 
-								<li class="header-cart-item">
-									<div class="header-cart-item-img">
-										<img src="images/item-cart-02.jpg" alt="IMG">
-									</div>
-
-									<div class="header-cart-item-txt">
-										<a href="#" class="header-cart-item-name">
-											Converse All Star Hi Black Canvas
-										</a>
-
-										<span class="header-cart-item-info">
-											1 x $39.00
-										</span>
-									</div>
-								</li>
-
-								<li class="header-cart-item">
-									<div class="header-cart-item-img">
-										<img src="images/item-cart-03.jpg" alt="IMG">
-									</div>
-
-									<div class="header-cart-item-txt">
-										<a href="#" class="header-cart-item-name">
-											Nixon Porter Leather Watch In Tan
-										</a>
-
-										<span class="header-cart-item-info">
-											1 x $17.00
-										</span>
-									</div>
-								</li>
-							</ul>
+							echo '</ul>
 
 							<div class="header-cart-total">
-								Total: $75.00
-							</div>
+								Total: '.$total.'
+							</div>';
+							
+
+							?>	
 
 							<div class="header-cart-buttons">
 								<div class="header-cart-wrapbtn">
@@ -559,6 +568,23 @@
 					<div class="row">
 						
 <?php 
+error_reporting(0);
+
+	$pagina = isset($_GET['pagina']) ? $_GET['pagina'] : 1;
+	$registro = 6;
+
+	$sqlT = "SELECT * FROM produtos";
+	$queryT = mysqli_query($conexao, $sqlT);
+	$total = mysqli_num_rows($queryT);
+
+	$numPaginas = ceil($total / $registro);
+
+
+	$inicio = $pagina - 1;
+	$inicio = $inicio * $numPaginas;
+
+	$sql = "SELECT * FROM produtos LIMIT $inicio, $registro";
+
 if (isset($_GET['cat'])) {
 	if ($_GET['cat'] != "all") {
 		$sql = "SELECT * FROM produtos WHERE cat = '".$_GET['cat']."'";
@@ -645,9 +671,9 @@ $queryBusca = mysqli_query($conexao, $sql);
 
 							<div class="block2-btn-addcart w-size1 trans-0-4" >
 								<!-- Button -->
-								<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-									Add to Cart
-								</button>
+								<a href="?acao=add&id='.$dadosP['cod'].'" class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
+									Adicionar ao carrinho
+								</a>
 							</div>
 						</div>
 					</div>
@@ -670,8 +696,16 @@ $queryBusca = mysqli_query($conexao, $sql);
 
 					<!-- Pagination -->
 					<div class="pagination flex-m flex-w p-t-26">
-						<a href="#" class="item-pagination flex-c-m trans-0-4 active-pagination">1</a>
-						<a href="#" class="item-pagination flex-c-m trans-0-4">2</a>
+					<?php 
+						for ($i=1; $i<=$numPaginas; $i++) { 
+							if ($_GET['pagina'] == $i) {
+								echo '<a href="?pagina='.$i.'" class="item-pagination flex-c-m trans-0-4 active-pagination">'.$i.'</a>';
+							} else {
+								echo '<a href="?pagina='.$i.'" class="item-pagination flex-c-m trans-0-4">'.$i.'</a>';
+							}		
+						}
+					?>
+					
 					</div>
 				</div>
 			</div>
