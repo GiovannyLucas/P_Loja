@@ -3,10 +3,6 @@
 	include('config.php');
 	session_start();
 
-	if (!isset($_SESSION['user'])) {
-		header('location:login.php');
-	}
-
 	if (!isset($_SESSION['carrinho'])) {
 		$_SESSION['carrinho'] = array();
 	}
@@ -62,333 +58,8 @@
 </head>
 <body class="animsition">
 
-	<!-- Header -->
-	<header class="header1">
-		<!-- Header desktop -->
-		<div class="container-menu-header">
-			<div class="topbar">
-				<div class="topbar-social">
-					<a href="#" class="topbar-social-item fa fa-facebook"></a>
-					<a href="#" class="topbar-social-item fa fa-instagram"></a>
-					<a href="#" class="topbar-social-item fa fa-pinterest-p"></a>
-					<a href="#" class="topbar-social-item fa fa-snapchat-ghost"></a>
-					<a href="#" class="topbar-social-item fa fa-youtube-play"></a>
-				</div>
+<?php include('menu.php'); ?>
 
-				<span class="topbar-child1">
-					Envio grátis para compras a partir de R$100
-				</span>
-
-				<div class="topbar-child2">
-					<span class="topbar-email">
-						<?php echo $_SESSION['user']; ?>
-					</span>
-
-					<div class="topbar-language rs1-select2">
-						<select class="selection-1" name="time">
-							<option>D$</option>
-							<option>R$</option>
-						</select>
-					</div>
-				</div>
-			</div>
-
-			<div class="wrap_header">
-				<!-- Logo -->
-				<a href="index.php" class="logo">
-					<img src="images/icons/logo.png" alt="IMG-LOGO">
-				</a>
-
-				<!-- Menu -->
-				<div class="wrap_menu">
-					<nav class="menu">
-						<ul class="main_menu">
-							<li>
-								<a href="index.php">Menu</a>
-							</li>
-
-							<li>
-								<a href="product.php?cat=all">Fazer compras</a>
-							</li>
-
-							<li class="sale-noti">
-								<a href="product.php">Promoções</a>
-							</li>
-
-							<li>
-								<a href="cart.php">Destaques</a>
-							</li>
-
-							<li>
-								<a href="blog.php">Blog</a>
-							</li>
-
-							<li>
-								<a href="about.php">Sobre</a>
-							</li>
-
-							<li>
-								<a href="contact.php">Contatos</a>
-							</li>
-						</ul>
-					</nav>
-				</div>
-
-				<!-- Header Icon -->
-				<div class="header-icons">
-					<a href="#" class="header-wrapicon1 dis-block">
-						<img src="images/icons/icon-header-01.png" class="header-icon1" alt="ICON">
-					</a>
-
-					<span class="linedivide1"></span>
-
-					<div class="header-wrapicon2">
-						<img src="images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
-						<span class="header-icons-noti"><?php 
-							echo count($_SESSION['carrinho']);
-						?></span>
-
-						<!-- Header cart noti -->
-						<div class="header-cart header-dropdown">
-							<ul class="header-cart-wrapitem">
-							<?php
-							error_reporting(0); 
-							$total = 0;
-
-								foreach ($_SESSION['carrinho'] as $id => $qnt) {
-									$sqlL = "SELECT * FROM produtos WHERE cod = '".$id."'";
-									$query = mysqli_query($conexao, $sqlL);
-
-									$prods = mysqli_fetch_assoc($query);
-									
-									$sqlImg = "SELECT * FROM imagens WHERE id_Produto = '$id' LIMIT 0,1";
-									$queryImg = mysqli_query($conexao, $sqlImg);
-
-									$Img = mysqli_fetch_assoc($queryImg);
-
-									$total += $qnt * $prods['preco'];
-							echo'
-								<li class="header-cart-item">
-									
-										<a class="header-cart-item-img" href="?acao=del&id=">
-										<img src="admin/img/'.$Img['img'].'" alt="IMG">
-										</a>
-									
-									<div class="header-cart-item-txt">
-										<a href="#" class="header-cart-item-name">
-											'.$prods['nome'].'
-										</a>
-
-										<span class="header-cart-item-info">
-											'.$qnt.'x'.$prods['preco'].'
-										</span>
-									</div>
-								</li>';
-							}
-
-							echo '</ul>
-
-							<div class="header-cart-total">
-								Total: '.$total.'
-							</div>';
-							
-
-							?>	
-
-							<div class="header-cart-buttons">
-								<div class="header-cart-wrapbtn">
-									<!-- Button -->
-									<a href="cart.php" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-										View Cart
-									</a>
-								</div>
-
-								<div class="header-cart-wrapbtn">
-									<!-- Button -->
-									<a href="#" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-										Check Out
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<!-- Header Mobile -->
-		<div class="wrap_header_mobile">
-			<!-- Logo moblie -->
-			<a href="index.php" class="logo-mobile">
-				<img src="images/icons/logo.png" alt="IMG-LOGO">
-			</a>
-
-			<!-- Button show menu -->
-			<div class="btn-show-menu">
-				<!-- Header Icon mobile -->
-				<div class="header-icons-mobile">
-					<a href="#" class="header-wrapicon1 dis-block">
-						<img src="images/icons/icon-header-01.png" class="header-icon1" alt="ICON">
-					</a>
-
-					<span class="linedivide2"></span>
-
-					<div class="header-wrapicon2">
-						<img src="images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
-						<span class="header-icons-noti">0</span>
-
-						<!-- Header cart noti -->
-						<div class="header-cart header-dropdown">
-							<ul class="header-cart-wrapitem">
-								<li class="header-cart-item">
-									<div class="header-cart-item-img">
-										<img src="images/item-cart-01.jpg" alt="IMG">
-									</div>
-
-									<div class="header-cart-item-txt">
-										<a href="#" class="header-cart-item-name">
-											White Shirt With Pleat Detail Back
-										</a>
-
-										<span class="header-cart-item-info">
-											1 x $19.00
-										</span>
-									</div>
-								</li>
-
-								<li class="header-cart-item">
-									<div class="header-cart-item-img">
-										<img src="images/item-cart-02.jpg" alt="IMG">
-									</div>
-
-									<div class="header-cart-item-txt">
-										<a href="#" class="header-cart-item-name">
-											Converse All Star Hi Black Canvas
-										</a>
-
-										<span class="header-cart-item-info">
-											1 x $39.00
-										</span>
-									</div>
-								</li>
-
-								<li class="header-cart-item">
-									<div class="header-cart-item-img">
-										<img src="images/item-cart-03.jpg" alt="IMG">
-									</div>
-
-									<div class="header-cart-item-txt">
-										<a href="#" class="header-cart-item-name">
-											Nixon Porter Leather Watch In Tan
-										</a>
-
-										<span class="header-cart-item-info">
-											1 x $17.00
-										</span>
-									</div>
-								</li>
-							</ul>
-
-							<div class="header-cart-total">
-								Total: $75.00
-							</div>
-
-							<div class="header-cart-buttons">
-								<div class="header-cart-wrapbtn">
-									<!-- Button -->
-									<a href="cart.php" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-										View Cart
-									</a>
-								</div>
-
-								<div class="header-cart-wrapbtn">
-									<!-- Button -->
-									<a href="#" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-										Check Out
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="btn-show-menu-mobile hamburger hamburger--squeeze">
-					<span class="hamburger-box">
-						<span class="hamburger-inner"></span>
-					</span>
-				</div>
-			</div>
-		</div>
-
-		<!-- Menu Mobile -->
-		<div class="wrap-side-menu" >
-			<nav class="side-menu">
-				<ul class="main-menu">
-					<li class="item-topbar-mobile p-l-20 p-t-8 p-b-8">
-						<span class="topbar-child1">
-							Envio grátis para compras a partir de R$100
-						</span>
-					</li>
-
-					<li class="item-topbar-mobile p-l-20 p-t-8 p-b-8">
-						<div class="topbar-child2-mobile">
-							<span class="topbar-email">
-								<?php echo $_SESSION['user']; ?>
-							</span>
-
-							<div class="topbar-language rs1-select2">
-								<select class="selection-1" name="time">
-									<option>D$</option>
-									<option>R$</option>
-								</select>
-							</div>
-						</div>
-					</li>
-
-					<li class="item-topbar-mobile p-l-10">
-						<div class="topbar-social-mobile">
-							<a href="#" class="topbar-social-item fa fa-facebook"></a>
-							<a href="#" class="topbar-social-item fa fa-instagram"></a>
-							<a href="#" class="topbar-social-item fa fa-pinterest-p"></a>
-							<a href="#" class="topbar-social-item fa fa-snapchat-ghost"></a>
-							<a href="#" class="topbar-social-item fa fa-youtube-play"></a>
-						</div>
-					</li>
-
-					
-					<li class="item-menu-mobile">
-						<a href="index.php">Menu</a>
-						<i class="arrow-main-menu fa fa-angle-right" aria-hidden="true"></i>
-					</li>
-
-					<li class="item-menu-mobile">
-						<a href="product.php?cat=all">Fazer compras</a>
-					</li>
-
-					<li class="item-menu-mobile">
-						<a href="product.php">Promoção</a>
-					</li>
-
-					<li class="item-menu-mobile">
-						<a href="cart.php">Destaques</a>
-					</li>
-
-					<li class="item-menu-mobile">
-						<a href="blog.php">Blog</a>
-					</li>
-
-					<li class="item-menu-mobile">
-						<a href="about.php">Sobre</a>
-					</li>
-
-					<li class="item-menu-mobile">
-						<a href="contact.php">Contatos</a>
-					</li>
-				</ul>
-			</nav>
-		</div>
-	</header>
-	<!-- Title Page -->
 
 	<section class="bg-title-page p-t-50 p-b-40 flex-col-c-m" style="background-image: url(imgs/all.jpg)">
 		<section class="bg-title-page p-t-50 p-b-40 flex-col-c-m" style="background-image: url(imgs/<?php echo $_SESSION['imgCat']; ?>.jpg); margin: -50px -100px -40px -100px">
@@ -525,7 +196,16 @@
 				</div>
 
 				<div class="col-sm-6 col-md-8 col-lg-9 p-b-50">
-					<!--  -->
+					<?php 
+						if (isset($_SESSION['user'])) {
+							$pag = "product-detail.php";				
+						} else {
+							$pag = "product.php";
+							
+							echo "<div class='alert-danger'><center>Faça o <a href='login.php'>login</a> e veja os produtos!</center></div><br>";
+
+						}
+					?>
 					<div class="flex-sb-m flex-w p-b-35">
 						<div class="flex-w">
 							<div class="rs2-select2 bo4 of-hidden w-size12 m-t-5 m-b-5 m-r-10">
@@ -648,7 +328,6 @@ if (isset($_GET['campo'])) {
 
 $queryBusca = mysqli_query($conexao, $sql);
 
-
 	while ($dadosP = mysqli_fetch_assoc($queryBusca)) {
 		$sqlImg = "SELECT * FROM imagens WHERE id_Produto = '".$dadosP['cod']."' LIMIT 0,1";
 		$queryImg = mysqli_query($conexao, $sqlImg);
@@ -679,7 +358,7 @@ $queryBusca = mysqli_query($conexao, $sql);
 					</div>
 
 					<div class="block2-txt p-t-20">
-						<a href="product-detail.php?cat='.$_GET['cat'].'&prod='.$dadosP['nome'].'&id='.$dadosP['cod'].'" class="block2-name dis-block s-text3 p-b-5">
+						<a href="'.$pag.'?cat='.$_GET['cat'].'&prod='.$dadosP['nome'].'&id='.$dadosP['cod'].'" class="block2-name dis-block s-text3 p-b-5">
 							'.$dadosP['nome'].'
 						</a>
 
