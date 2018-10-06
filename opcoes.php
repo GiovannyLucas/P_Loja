@@ -1,13 +1,3 @@
-<?php 
-	include('config.php');
-?>
-<!DOCTYPE html>
-<html>
-<head>
-	<title>GM Modas | Login</title>
-</head>	
-<body>
-
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -23,7 +13,7 @@
 								<a href="#" class="active" id="login-form-link">Login</a>
 							</div>
 							<div class="col-xs-6">
-								<a href="#" id="register-form-link">Cadastrar-se</a>
+								<a href="#" id="register-form-link">Register</a>
 							</div>
 						</div>
 						<hr>
@@ -31,48 +21,51 @@
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-lg-12">
-								<form id="login-form" method="get" role="form" style="display: block;">
+								<form id="login-form" action="" method="post" role="form" style="display: block;">
 									<div class="form-group">
-										<label for="name">Usuário:</label>
-										<input type="text" name="name" id="name" tabindex="1" class="form-control" placeholder="Nome">
+										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
 									</div>
 									<div class="form-group">
-										<label for="pass">Senha:</label>
-										<input type="password" name="pass" id="pass" tabindex="2" class="form-control" placeholder="********">
+										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
+									</div>
+									<div class="form-group text-center">
+										<input type="checkbox" tabindex="3" class="" name="remember" id="remember">
+										<label for="remember"> Remember Me</label>
 									</div>
 									<div class="form-group">
 										<div class="row">
 											<div class="col-sm-6 col-sm-offset-3">
-												<input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Login">
+												<input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In">
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="row">
+											<div class="col-lg-12">
+												<div class="text-center">
+													<a href="https://phpoll.com/recover" tabindex="5" class="forgot-password">Forgot Password?</a>
+												</div>
 											</div>
 										</div>
 									</div>
 								</form>
-								<form id="register-form" method="post" role="form" style="display: none;">
+								<form id="register-form" action="" method="post" role="form" style="display: none;">
 									<div class="form-group">
-										<label for="nome">Usuário:</label>
-										<input type="text" name="nome" id="nome" tabindex="1" class="form-control" placeholder="Seu nome" value="">
+										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
 									</div>
 									<div class="form-group">
-										<label for="cpf">CPF:</label>
-										<input type="text" name="cpf" id="cpf" tabindex="1" class="form-control" placeholder="999.999.999-99">
+										<input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="">
 									</div>
 									<div class="form-group">
-										<label for="tel">Telefone/Celular:</label>
-										<input type="text" name="tel" id="tel" tabindex="1" class="form-control" placeholder="(99)99999-9999">
+										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
 									</div>
 									<div class="form-group">
-										<label for="email">E-mail:</label>
-										<input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="seu@email.com">
-									</div>
-									<div class="form-group">
-										<label for="pass">Senha:</label>
-										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="********">
+										<input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password">
 									</div>
 									<div class="form-group">
 										<div class="row">
 											<div class="col-sm-6 col-sm-offset-3">
-												<input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Cadastre-se já!">
+												<input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now">
 											</div>
 										</div>
 									</div>
@@ -84,9 +77,6 @@
 			</div>
 		</div>
 	</div>
-
-</body>
-</html>
 
 <style type="text/css">
 body {
@@ -145,7 +135,7 @@ body {
 	border-color: #ccc;
 }
 .btn-login {
-	background-color: #1CB94E;
+	background-color: #59B2E0;
 	outline: none;
 	color: #fff;
 	font-size: 14px;
@@ -158,8 +148,8 @@ body {
 .btn-login:hover,
 .btn-login:focus {
 	color: #fff;
-	background-color: #1CA347;
-	border-color: #1CA347;
+	background-color: #53A3CD;
+	border-color: #53A3CD;
 }
 .forgot-password {
 	text-decoration: underline;
@@ -210,40 +200,4 @@ body {
 	});
 
 });
-</script>	
-
-<?php
-include('config.php'); 
-
-//LOGIN
-
-if (isset($_POST['name'])) {
-	
-	$sql = "SELECT * FROM usuarios WHERE nome = '".$_GET['name']."' AND senha = '".$_GET['pass']."'";
-	$query = mysqli_query($conexao, $sql);
-
-	if ($_GET['name'] == "admin" && $_GET['pass'] == "admin") {
-		header('location: admin/login.php');
-	} else {
-		if (mysqli_num_rows($query) > 0) {
-			$_SESSION['user'] = $_GET['name'];
-			header('location: index.php');
-		} else {
-		echo "<script>alert('Usuário e/ou senha incorreto(s)!');</script>";
-		}
-	}
-
-}
-if (isset($_POST['nome'])) {
-//CADASTRO
-	$sql = "INSERT INTO usuarios VALUES (DEFAULT,'".$_POST['nome']."','".$_POST['cpf']."','".$_POST['tel']."','".$_POST['email']."','".$_POST['password']."')";
-	$query = mysqli_query($conexao, $sql);
-
-	if ($query) {
-		echo "<script>alert('Usuário cadastrado com sucesso!');
-					location.href = 'index.php';</script>";
-	} else {
-		echo "<script>alert('Erro ao cadastrar!');</script>";
-	}
-}	
-?>
+</script>

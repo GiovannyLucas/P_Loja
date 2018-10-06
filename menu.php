@@ -86,16 +86,26 @@
 
 								<div class="header-cart header-dropdown">
 								<table class="table table-hover">
-									<tr class="header-cart-wrapitem">
-										<td><a href="">Configurações <h6 class="fa fa-cogs"><h6></a></td>
-									</tr>
-									<tr>
-										<td><a href="">Ver pedidos <h6 class="fa fa-tasks"><h6></a></td>
-									</tr>
-									<tr>
-										<td><a href="">Endereços <h6 class="fa fa-address-card"><h6></a></td>
-									</tr>	
-								</table>	
+									<thead>
+										<tr>
+											<td>Opções</td>
+										</tr>
+									</thead>
+									<tbody>
+										<tr class="header-cart-wrapitem">
+											<td><a href="">Configurações <h6 class="fa fa-cogs"><h6></a></td>
+										</tr>
+										<tr>
+											<td><a href="">Ver pedidos <h6 class="fa fa-tasks"><h6></a></td>
+										</tr>
+										<tr>
+											<td><a href="">Endereços <h6 class="fa fa-address-card"><h6></a></td>
+										</tr>	
+									</tbody>
+								</table>
+									<div align="right">
+										<a href="?sair=true" class="btn btn-outline-danger">Sair <span class="fa fa-sign-out"></span></a>	
+									</div>
 								</div>
 							</div>		
 								';
@@ -169,7 +179,8 @@
 										Ver carrinho
 									</a>
 								</div>
-							</div>';
+							</div>
+							';
 							
 						} else {
 							echo '
@@ -358,7 +369,7 @@
 		</div>
 	</header>
 	
-<!-- MODAL LOGIN -->	
+<!-- MODAL LOGIN	
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">
@@ -369,22 +380,14 @@
 	        </button>
 	      </div>
 	      <div class="modal-body">
-	        <form method="post">
-		          <div class="form-group">
-		            <label for="name" class="col-form-label">Nome:</label>
-		            <input type="text" class="form-control" style="background: rgba(0,0,0,.1);" name="name">
-		          </div>
-		          <div class="form-group">
-		            <label for="pass" class="col-form-label">Senha:</label>
-		            <input type="password" class="form-control" style="background: rgba(0,0,0,.1);" name="pass">
-		          </div>
+	        <?php //include('opcoes.php'); ?>
 	      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</button>
 		        <button type="submit" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">Logar <span style="margin-left: 5px" class="fa fa-sign-in"></span></button>
 		      </div>
 		    </div>
-	        </form>
+	       
 	  </div>
 </div>
 <script type="text/javascript">
@@ -400,21 +403,15 @@
 	});
 
 </script>
-
+ -->
 <?php 
 
-if (isset($_POST['name'])) {
-
-	$sqlLogin = "SELECT * FROM usuarios WHERE nome = '".$_POST['name']."' AND senha = '".$_POST['pass']."'";
-	$queryLogin = mysqli_query($conexao, $sqlLogin);
-
-	if (mysqli_num_rows($queryLogin) > 0) {
-		$_SESSION['user'] = $_POST['name'];
-		echo "<script>location.href = 'index.php';<script>";
-	} else {
-		echo 'erro';
+if (isset($_GET['sair'])) {
+	if ($_GET['sair'] == "true") {
+		unset($_SESSION['user']);
+		session_destroy();
+		header('location:index.php');
 	}
-
 }
 
 ?>
