@@ -19,7 +19,7 @@ error_reporting(0);
 			<label>Preço: </label>
 		<div class="input-group">
 			<span class="input-group-addon">R$</span>
-			<input type="number" id="preco" name="preco" class="form-control" placeholder="99.99" required>
+			<input type="text" id="preco" name="preco" class="form-control" placeholder="99.99" required>
 		</div>
 			<label for="categoria">Categoria: </label>
 		<div class="form-group">
@@ -59,6 +59,10 @@ error_reporting(0);
 			<input type="radio" name="tam" value="G"><span> G</span>
 			<input type="radio" name="tam" value="GG"><span> GG</span>
 			<input type="radio" name="tam" value="XG"><span> XG</span>
+		</div>	
+		<div class="form-group">
+			<label for="qnt">Quantidade: </label>
+			<input type="number" name="qnt" class="form-control" placeholder="99">
 		</div>				
 		<div class="form-group">
 			<label for="img1">Imagem: </label>
@@ -71,12 +75,14 @@ error_reporting(0);
 		<div class="form-group">
 			<label for="info_add">Informações adicionais: </label>
 			<textarea id="info_add" name="info_add" class="form-control"></textarea>
-		</div>		
-		<input type="submit" value="Cadastrar!" class="btn btn-primary">
+		</div><br>		
+		<input type="submit" value="Cadastrar!" style="padding-bottom: 20px; font-size: 18px" class="btn btn-primary form-control" >
 		
 	</form>
 </div>
-
+<br>
+<br>
+<br>
 <?php 
 
 
@@ -85,7 +91,7 @@ if (isset($_POST['nome'])) {
 	$diretorio = "img/";
     $arquivo = $_FILES['arquivo'];
 
-    $sqlAdd = "INSERT INTO produtos VALUES (DEFAULT,'".$_POST['nome']."','".$_POST['preco']."','".$_POST['categoria']."','".$_POST['descricao']."','".$_POST['info_add']."','".$_POST['color']."','".$_POST['tam']."')";
+    $sqlAdd = "INSERT INTO produtos VALUES (DEFAULT,'".$_POST['nome']."','".$_POST['preco']."','".$_POST['categoria']."','".$_POST['descricao']."','".$_POST['info_add']."','".$_POST['color']."','".$_POST['tam']."','".$_POST['qnt']."')";
     $queryAdd = mysqli_query($conexao, $sqlAdd);
 
     $sqlLID = "SELECT LAST_INSERT_ID()";

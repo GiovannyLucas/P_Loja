@@ -43,7 +43,7 @@
 							<li>
 								<a href="index.php">Menu</a>
 							</li>
-							<li class="sale-noti">
+							<li>
 								<a href="product.php?cat=all">Fazer compras</a>
 							</li>
 
@@ -54,10 +54,6 @@
 						
 							<li>
 								<a href="product.php">Promoções</a>
-							</li>
-
-							<li>
-								<a href="cart.php">Destaques</a>
 							</li>
 
 							<li>
@@ -93,14 +89,17 @@
 									</thead>
 									<tbody>
 										<tr class="header-cart-wrapitem">
-											<td><a href="">Configurações <h6 class="fa fa-cogs"><h6></a></td>
+											<td><a href="configuracoes.php">Configurações </a></td>
+											<td><a href="configuracoes.php"><h6 class="fa fa-cogs"><h6></a></td>
 										</tr>
 										<tr>
-											<td><a href="">Ver pedidos <h6 class="fa fa-tasks"><h6></a></td>
+											<td><a href="pedidos.php?usuario='.$_SESSION['user'].'">Ver pedidos </a></td>
+											<td><a href="pedidos.php?usuario='.$_SESSION['user'].'"><h6 class="fa fa-tasks"><h6></a></td>
 										</tr>
 										<tr>
-											<td><a href="">Endereços <h6 class="fa fa-address-card"><h6></a></td>
-										</tr>	
+											<td><a href="enderecos.php?usuario='.$_SESSION['user'].'">Endereços </a></td>
+											<td><a href="enderecos.php?usuario='.$_SESSION['user'].'"><h6 class="fa fa-address-card"><h6></a></td>
+										</tr>
 									</tbody>
 								</table>
 									<div align="right">
@@ -111,9 +110,9 @@
 								';
 						} else {
 							echo '
-							<a href="#" class="header-wrapicon1 dis-block">
+							<a href="cadUser.php" class="header-wrapicon1 dis-block">
 									Cadastre-se  
-							</a> | <a href="#" data-toggle="modal" data-target="#exampleModal" class="header-wrapicon1 dis-block">
+							</a> | <a href="" data-toggle="modal" data-target="#exampleModal" class="header-wrapicon1 dis-block">
 									Faça login! 
 							</a>';
 						}
@@ -165,12 +164,19 @@
 										</span>
 									</div>
 								</li>';
+
 							}
 
+								if (isset($_GET['acao'])) {
+									if ($_GET['acao'] == "del") {
+										unset($_SESSION['carrinho'][$id]);
+										echo "<script>location.href = 'product.php';</script>";
+									}
+								}
 							echo '</ul>
 
 							<div class="header-cart-total">
-								Total: '.$total.'
+								Total: R$ '.$total.'
 							</div>
 
 							<div class="header-cart-buttons">
@@ -188,10 +194,11 @@
 									Cadastre-se  
 							</a>
 							<span> ou </span>
-							<a href="#" class="header-wrapicon1 dis-block">
+							<a href="" data-toggle="modal" data-target="#exampleModal" class="header-wrapicon1 dis-block" class="header-wrapicon1 dis-block">
 									 Faça login! 
 							</a></center>';
 						}
+
 
 							?>	
 
@@ -350,10 +357,6 @@
 					</li>
 
 					<li class="item-menu-mobile">
-						<a href="cart.php">Destaques</a>
-					</li>
-
-					<li class="item-menu-mobile">
 						<a href="blog.php">Blog</a>
 					</li>
 
@@ -369,23 +372,34 @@
 		</div>
 	</header>
 	
-<!-- MODAL LOGIN	
+<!-- MODAL LOGIN  -->	
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <h5 class="modal-title" id="exampleModalLabel">Fazer Login!</h5>
+	        <h5 class="modal-title" id="exampleModalLabel">Fazer Login</h5>
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	          <span aria-hidden="true">&times;</span>
 	        </button>
 	      </div>
 	      <div class="modal-body">
-	        <?php //include('opcoes.php'); ?>
+	        	<form method="post">
+		        		<label for="nome">Nome:</label>
+	        		<div class="input-group">
+		        		<span class="input-group-addon form-control"><span class="fa fa-user"></span>
+		        		<input type="text" name="nome" class="form-control" style="background-color: rgb(233,236,239);"></span>
+	        		</div><br>
+	        		<label for="senha">Senha:</label>
+	        		<div class="input-group">
+		        		<span class="input-group-addon form-control"><span class="fa fa-key"></span>
+		        		<input type="password" name="senha" class="form-control" style="background-color: rgb(233,236,239);"></span>
+	        		</div>
 	      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</button>
 		        <button type="submit" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">Logar <span style="margin-left: 5px" class="fa fa-sign-in"></span></button>
 		      </div>
+		      </form>
 		    </div>
 	       
 	  </div>
@@ -403,14 +417,41 @@
 	});
 
 </script>
- -->
+
 <?php 
 
 if (isset($_GET['sair'])) {
 	if ($_GET['sair'] == "true") {
 		unset($_SESSION['user']);
+		unset($_SESSION['idUser']);
 		session_destroy();
-		header('location:index.php');
+		echo '<script>
+					location.href = "index.php";
+			  </script>';
+	}
+}
+
+if ($_POST['nome'] == "admin" & $_POST['senha'] == "admin") {
+	echo "<script>location.href = 'admin/login.php';</script>";
+} else
+if (isset($_POST['nome'])) {
+	$sqlLogin = "SELECT * FROM usuarios WHERE nome = '".$_POST['nome']."' AND senha = '".$_POST['senha']."'";
+	$queryLogin = mysqli_query($conexao, $sqlLogin);
+
+	if (mysqli_num_rows($queryLogin) > 0) {
+		$queryId = mysqli_query($conexao, "SELECT * FROM usuarios WHERE nome = '".$_POST['nome']."'");
+		$idd = mysqli_fetch_assoc($queryId);
+		$_SESSION['idUser'] = $idd['id'];
+		$_SESSION['user'] = $_POST['nome'];
+		echo '<script>
+					alert("Bem vindo, '.$_SESSION['user'].'!");
+					location.href = "index.php";
+			  </script>';
+	} else {
+		echo '<script>
+					alert("Usuário e/ou senha incorreto(s)!");
+					location.href = "index.php";
+			  </script>';		
 	}
 }
 

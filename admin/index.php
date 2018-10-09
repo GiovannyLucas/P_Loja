@@ -376,7 +376,7 @@ error_reporting(E_ALL);
         </li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-pie-chart"></i>
+            <i class="fa fa-tasks"></i>
             <span>Categoria</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
@@ -385,6 +385,19 @@ error_reporting(E_ALL);
           <ul class="treeview-menu">
             <li><a href="?page=addCat"><i class="fa fa-plus"></i> Cadastro</a></li>
             <li><a href="?page=consultaCat"><i class="fa fa-search"></i> Consulta</a></li>
+          </ul>
+        </li>
+         <li class="treeview">
+          <a href="#">
+            <i class="fa fa-paint-brush"></i>
+            <span>Cores</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="?page=addCor"><i class="fa fa-plus"></i> Cadastro</a></li>
+            <li><a href="?page=consultaCor"><i class="fa fa-search"></i> Consulta</a></li>
           </ul>
         </li>        
         <li class="treeview">

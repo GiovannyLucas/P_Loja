@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 06-Out-2018 às 02:48
+-- Generation Time: 09-Out-2018 às 04:57
 -- Versão do servidor: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -72,6 +72,30 @@ INSERT INTO `cor` (`id_cor`, `nome_cor`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `enderecos`
+--
+
+CREATE TABLE `enderecos` (
+  `id` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `nome_user` varchar(50) NOT NULL,
+  `endereco` varchar(100) NOT NULL,
+  `cidade` varchar(50) NOT NULL,
+  `estado` varchar(50) NOT NULL,
+  `pais` varchar(50) NOT NULL,
+  `cep` varchar(9) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `enderecos`
+--
+
+INSERT INTO `enderecos` (`id`, `id_usuario`, `nome_user`, `endereco`, `cidade`, `estado`, `pais`, `cep`) VALUES
+(1, 12, 'Keds', 'Rua Dr. JosÃ© Torquato', 'SÃ£o Miguel', 'Rio Grande do Norte', 'Brasil', '59920-000');
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `imagens`
 --
 
@@ -93,7 +117,12 @@ INSERT INTO `imagens` (`id`, `id_Produto`, `img`) VALUES
 (55, 100, 'E79-0801-188_zoom1.jpg'),
 (56, 100, 'E79-0801-188_zoom2.jpg'),
 (57, 100, 'E79-0801-188_zoom3.jpg'),
-(58, 100, 'E79-0801-188_zoom4.jpg');
+(58, 100, 'E79-0801-188_zoom4.jpg'),
+(59, 101, 'COL-0122-014_zoom1.jpg'),
+(60, 101, 'COL-0122-014_zoom2.jpg'),
+(61, 101, 'COL-0122-014_zoom3.jpg'),
+(62, 102, 'F46-0285-018_zoom1.jpg'),
+(63, 102, 'F46-0285-018_zoom2.jpg');
 
 -- --------------------------------------------------------
 
@@ -130,6 +159,28 @@ INSERT INTO `notificacoes` (`id`, `nome`, `tel`, `email`, `assunto`, `msg`, `sta
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `pedidos`
+--
+
+CREATE TABLE `pedidos` (
+  `id` int(11) NOT NULL,
+  `preco` varchar(10) NOT NULL,
+  `comprador` varchar(50) NOT NULL,
+  `data` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `pedidos`
+--
+
+INSERT INTO `pedidos` (`id`, `preco`, `comprador`, `data`) VALUES
+(1, '938.97', 'Giova_ADM', '2018-10-08'),
+(2, '0', 'Giova_ADM', '2018-10-08'),
+(3, '299.99', 'Keds', '2018-10-08');
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `produtos`
 --
 
@@ -141,16 +192,19 @@ CREATE TABLE `produtos` (
   `descricao` text NOT NULL,
   `info_add` text NOT NULL,
   `cor` varchar(20) NOT NULL,
-  `tamanho` varchar(20) NOT NULL
+  `tamanho` varchar(20) NOT NULL,
+  `qnt` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `produtos`
 --
 
-INSERT INTO `produtos` (`cod`, `nome`, `preco`, `cat`, `descricao`, `info_add`, `cor`, `tamanho`) VALUES
-(99, 'Camisa Bacana', 299.99, 'Masculino', 'Camisa toper', 'Bacana mesmo', 'Cinza', 'G'),
-(100, 'Camisa Tope', 180.99, 'Masculino', 'Camisa show de bola', 'nece\r\nessevve', 'Azul Claro', 'M');
+INSERT INTO `produtos` (`cod`, `nome`, `preco`, `cat`, `descricao`, `info_add`, `cor`, `tamanho`, `qnt`) VALUES
+(99, 'Camisa Bacana', 299.99, 'Masculino', 'Camisa toper', 'Bacana mesmo', 'Cinza', 'G', 10),
+(100, 'Camisa Tope', 180.99, 'Masculino', 'Camisa show de bola', 'nece\r\nessevve', 'Azul Claro', 'M', 15),
+(101, 'Camisa Milan', 158, 'Infantil', 'Camisa do Milan para crianÃ§as a partir de 3 anos.', 'Disponibilizamos de 30cm x 50cm atÃ© 60cm x 90cm.', 'Vermelho', 'PP', 12),
+(102, 'Blusa Infantil', 79.9, 'Infantil', 'aÃ§lmedmlÃ§', 'ewÃ§lemewmol', 'Cinza', 'PP', 25);
 
 -- --------------------------------------------------------
 
@@ -220,7 +274,10 @@ CREATE TABLE `usuarios` (
 INSERT INTO `usuarios` (`id`, `nome`, `cpf`, `tel`, `email`, `senha`) VALUES
 (1, 'Lucas', '122.941.424-03', '99999999', 'geovannylucas2013@hotmail.com', '12345'),
 (2, 'Giova', '177.177.177-22', '99999999', 'geovannylucas2013@outlook.com', '12345'),
-(3, 'Nicole', '177.177.177-28', '981590574', 'sdlkmf@sdjnds.com', '12345');
+(3, 'Nicole Giova', '177.177.177-28', '999999999', 'sdlkmf@sdjnds.com', ''),
+(10, 'blog-it', '15196951651', '65161651651', 'sdlkmf@sdjnds.com', '12345'),
+(11, 'David', '199.199.199-19', '981590574', 'gamesbrdavid@gmail.com', 'qwerty'),
+(12, 'Keds', '888.888.888-22', '99999999', 'manoel@gmail.com', 'qwerty');
 
 --
 -- Indexes for dumped tables
@@ -239,6 +296,12 @@ ALTER TABLE `cor`
   ADD PRIMARY KEY (`id_cor`);
 
 --
+-- Indexes for table `enderecos`
+--
+ALTER TABLE `enderecos`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `imagens`
 --
 ALTER TABLE `imagens`
@@ -249,6 +312,12 @@ ALTER TABLE `imagens`
 -- Indexes for table `notificacoes`
 --
 ALTER TABLE `notificacoes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `pedidos`
+--
+ALTER TABLE `pedidos`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -291,13 +360,19 @@ ALTER TABLE `categoria`
 -- AUTO_INCREMENT for table `cor`
 --
 ALTER TABLE `cor`
-  MODIFY `id_cor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_cor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `enderecos`
+--
+ALTER TABLE `enderecos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `imagens`
 --
 ALTER TABLE `imagens`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT for table `notificacoes`
@@ -306,10 +381,16 @@ ALTER TABLE `notificacoes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
+-- AUTO_INCREMENT for table `pedidos`
+--
+ALTER TABLE `pedidos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `cod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `cod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
 
 --
 -- AUTO_INCREMENT for table `tamanho`
@@ -327,7 +408,7 @@ ALTER TABLE `users_admin`
 -- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables
