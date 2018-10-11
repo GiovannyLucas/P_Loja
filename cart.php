@@ -265,7 +265,7 @@ include('footer.php');
 if (isset($_GET['opc'])) {
 	if ($_GET['opc'] == "finalizar") {
 		
-		$sqlPedido = "INSERT INTO pedidos VALUES (DEFAULT,'".$_SESSION['total']."','".$_SESSION['user']."',NOW())";
+		$sqlPedido = "INSERT INTO pedidos VALUES (DEFAULT,'".$_SESSION['total']."','".$_SESSION['user']."',NOW(),'0')";
 		$queryPedido = mysqli_query($conexao, $sqlPedido);
 
 		if ($queryPedido) {

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 09-Out-2018 às 04:57
+-- Generation Time: 12-Out-2018 às 00:03
 -- Versão do servidor: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -67,7 +67,8 @@ INSERT INTO `cor` (`id_cor`, `nome_cor`) VALUES
 (4, 'Vermelho'),
 (5, 'Marrom'),
 (6, 'Preto'),
-(7, 'Cinza');
+(7, 'Cinza'),
+(8, 'Branco');
 
 -- --------------------------------------------------------
 
@@ -91,7 +92,8 @@ CREATE TABLE `enderecos` (
 --
 
 INSERT INTO `enderecos` (`id`, `id_usuario`, `nome_user`, `endereco`, `cidade`, `estado`, `pais`, `cep`) VALUES
-(1, 12, 'Keds', 'Rua Dr. JosÃ© Torquato', 'SÃ£o Miguel', 'Rio Grande do Norte', 'Brasil', '59920-000');
+(1, 12, 'Giova', 'Rua Dr. JosÃ© Torquato', 'Pereiro', 'CearÃ¡', 'Brasil', '63460-000'),
+(2, 0, 'peluka', '', '', '', '', '0');
 
 -- --------------------------------------------------------
 
@@ -122,7 +124,38 @@ INSERT INTO `imagens` (`id`, `id_Produto`, `img`) VALUES
 (60, 101, 'COL-0122-014_zoom2.jpg'),
 (61, 101, 'COL-0122-014_zoom3.jpg'),
 (62, 102, 'F46-0285-018_zoom1.jpg'),
-(63, 102, 'F46-0285-018_zoom2.jpg');
+(63, 102, 'F46-0285-018_zoom2.jpg'),
+(64, 103, 'F62-0673-006_zoom1.jpg'),
+(65, 103, 'F62-0673-006_zoom2.jpg'),
+(66, 103, 'F62-0673-006_zoom3.jpg'),
+(67, 103, 'F62-0673-006_zoom4.jpg'),
+(68, 104, 'E79-0886-014_zoom1.jpg'),
+(69, 104, 'E79-0886-014_zoom2.jpg'),
+(70, 104, 'E79-0886-014_zoom3.jpg'),
+(71, 104, 'E79-0886-014_zoom4.jpg'),
+(72, 105, 'H21-0443-008_zoom1.jpg'),
+(73, 105, 'H21-0443-008_zoom2.jpg'),
+(74, 105, 'H21-0443-008_zoom3.jpg'),
+(75, 105, 'H21-0443-008_zoom4.jpg'),
+(76, 106, 'ETS-0104-008_zoom1.jpg'),
+(77, 106, 'ETS-0104-008_zoom2.jpg'),
+(78, 106, 'ETS-0104-008_zoom3.jpg'),
+(79, 106, 'ETS-0104-008_zoom4.jpg'),
+(80, 107, 'E60-0477-375_zoom1.jpg'),
+(81, 107, 'E60-0477-375_zoom2.jpg'),
+(82, 107, 'E60-0477-375_zoom3.jpg'),
+(83, 107, 'E60-0477-375_zoom4.jpg'),
+(84, 108, 'F46-0211-008_zoom1.jpg'),
+(85, 108, 'F46-0211-008_zoom2.jpg'),
+(86, 108, 'F46-0211-008_zoom3.jpg'),
+(87, 109, 'F46-0347-006_zoom1.jpg'),
+(88, 109, 'F46-0347-006_zoom2.jpg'),
+(89, 109, 'F46-0347-006_zoom3.jpg'),
+(90, 109, 'F46-0347-006_zoom4.jpg'),
+(91, 110, 'V54-1210-006_zoom1.jpg'),
+(92, 110, 'V54-1210-006_zoom2.jpg'),
+(93, 110, 'V54-1210-006_zoom3.jpg'),
+(94, 110, 'V54-1210-006_zoom4.jpg');
 
 -- --------------------------------------------------------
 
@@ -166,17 +199,21 @@ CREATE TABLE `pedidos` (
   `id` int(11) NOT NULL,
   `preco` varchar(10) NOT NULL,
   `comprador` varchar(50) NOT NULL,
-  `data` date NOT NULL
+  `data` date NOT NULL,
+  `prazo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `pedidos`
 --
 
-INSERT INTO `pedidos` (`id`, `preco`, `comprador`, `data`) VALUES
-(1, '938.97', 'Giova_ADM', '2018-10-08'),
-(2, '0', 'Giova_ADM', '2018-10-08'),
-(3, '299.99', 'Keds', '2018-10-08');
+INSERT INTO `pedidos` (`id`, `preco`, `comprador`, `data`, `prazo`) VALUES
+(3, '299.99', 'Keds', '2018-10-08', 0),
+(4, '180.99', 'Lucas', '2018-10-11', 0),
+(5, '158', 'Lucas', '2018-10-11', 0),
+(6, '299.99', 'Lucas', '2018-10-11', 0),
+(7, '480.98', 'Giova_ADM', '2018-10-11', 0),
+(8, '79.9', 'peluka', '2018-10-11', 0);
 
 -- --------------------------------------------------------
 
@@ -204,7 +241,15 @@ INSERT INTO `produtos` (`cod`, `nome`, `preco`, `cat`, `descricao`, `info_add`, 
 (99, 'Camisa Bacana', 299.99, 'Masculino', 'Camisa toper', 'Bacana mesmo', 'Cinza', 'G', 10),
 (100, 'Camisa Tope', 180.99, 'Masculino', 'Camisa show de bola', 'nece\r\nessevve', 'Azul Claro', 'M', 15),
 (101, 'Camisa Milan', 158, 'Infantil', 'Camisa do Milan para crianÃ§as a partir de 3 anos.', 'Disponibilizamos de 30cm x 50cm atÃ© 60cm x 90cm.', 'Vermelho', 'PP', 12),
-(102, 'Blusa Infantil', 79.9, 'Infantil', 'aÃ§lmedmlÃ§', 'ewÃ§lemewmol', 'Cinza', 'PP', 25);
+(102, 'Blusa Infantil', 79.9, 'Infantil', 'aÃ§lmedmlÃ§', 'ewÃ§lemewmol', 'Cinza', 'PP', 25),
+(103, 'Camisa Regata', 35.9, 'Moda-praia', 'Camisa regata para pessoas acima de 14 anos.', 'Tope, ela\r\n', 'Preto', 'M', 40),
+(104, 'Short Praia', 47.8, 'Moda-praia', 'Short para pessoas a partir de 10 anos', 'Muuito bom.', 'Branco', 'P', 17),
+(105, 'MacacÃ£o Willard', 130.1, 'Infanto-juvenil', 'MacacÃ£o Infanto-Juvenil.', 'Pessoas a partir de 10 anos.', 'Azul Claro', 'P', 5),
+(106, 'Vestido Florido', 99.99, 'Feminino', 'zpdÃ§mjswÃ§kl', 'rlgkmmlerkgn', 'Azul Escuro', 'M', 10),
+(107, 'Bermuda Bacana', 29.9, 'Masculino', 'doijeklekmn', 'sdeoijeolkijeolkmmrf', 'Azul Claro', 'M', 23),
+(108, 'Blusa de Frio', 59.9, 'Inverno', 'ejnawdljn top', 'awkjcbawkjcbawjkbk grand', 'Branco', 'PP', 13),
+(109, 'Blusa de Frio GM Modas', 400, 'Masculino', 'Pense num frii', 'Mesmo que uma lona, pra esquentar', 'Azul Escuro', 'PP', 63),
+(110, 'MacacÃ£o Whindervan', 80, 'Infanto-juvenil', 'asawq45trjngf vcfds', 'ascvsbst4esd sdxs', 'Azul Escuro', 'P', 30);
 
 -- --------------------------------------------------------
 
@@ -250,7 +295,8 @@ CREATE TABLE `users_admin` (
 --
 
 INSERT INTO `users_admin` (`id`, `nome`, `email`, `senha`, `img`, `nivel`) VALUES
-(1, 'Giova_ADM', 'giovanny@gmail.com', '12345', 'giovaADM.png', '0');
+(1, 'Giova_ADM', 'giovanny@gmail.com', '12345', 'giovaADM.png', '0'),
+(4, 'Carinha_ADM', 'fcajueiro94@gmail.com', 'qwerty', 'dd06156b06c412dcf8a5309a36936b6e.jpg', '1');
 
 -- --------------------------------------------------------
 
@@ -272,12 +318,8 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nome`, `cpf`, `tel`, `email`, `senha`) VALUES
-(1, 'Lucas', '122.941.424-03', '99999999', 'geovannylucas2013@hotmail.com', '12345'),
-(2, 'Giova', '177.177.177-22', '99999999', 'geovannylucas2013@outlook.com', '12345'),
-(3, 'Nicole Giova', '177.177.177-28', '999999999', 'sdlkmf@sdjnds.com', ''),
-(10, 'blog-it', '15196951651', '65161651651', 'sdlkmf@sdjnds.com', '12345'),
-(11, 'David', '199.199.199-19', '981590574', 'gamesbrdavid@gmail.com', 'qwerty'),
-(12, 'Keds', '888.888.888-22', '99999999', 'manoel@gmail.com', 'qwerty');
+(12, 'Giova', '888.888.888-22', '99999999', 'giova@gmail.com', 'qwerty'),
+(13, 'peluka', '000.000.000-00', '+55(99)99999-999', 'fcajueiro4@gmail.com', 'bel123');
 
 --
 -- Indexes for dumped tables
@@ -366,13 +408,13 @@ ALTER TABLE `cor`
 -- AUTO_INCREMENT for table `enderecos`
 --
 ALTER TABLE `enderecos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `imagens`
 --
 ALTER TABLE `imagens`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
 
 --
 -- AUTO_INCREMENT for table `notificacoes`
@@ -384,13 +426,13 @@ ALTER TABLE `notificacoes`
 -- AUTO_INCREMENT for table `pedidos`
 --
 ALTER TABLE `pedidos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `cod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
+  MODIFY `cod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
 
 --
 -- AUTO_INCREMENT for table `tamanho`
@@ -402,13 +444,13 @@ ALTER TABLE `tamanho`
 -- AUTO_INCREMENT for table `users_admin`
 --
 ALTER TABLE `users_admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Constraints for dumped tables

@@ -44,7 +44,7 @@
 								<a href="index.php">Menu</a>
 							</li>
 							<li>
-								<a href="product.php?cat=all">Fazer compras</a>
+								<a href="product.php?pagina=1">Fazer compras</a>
 							</li>
 
 				<?php 
@@ -190,11 +190,11 @@
 							
 						} else {
 							echo '
-							<center><a href="#" class="header-wrapicon1 dis-block">
+							<center><a href="cadUser.php" class="header-wrapicon1 dis-block">
 									Cadastre-se  
 							</a>
 							<span> ou </span>
-							<a href="" data-toggle="modal" data-target="#exampleModal" class="header-wrapicon1 dis-block" class="header-wrapicon1 dis-block">
+							<a href="" data-toggle="modal" data-target="#exampleModal" class="header-wrapicon1 dis-block">
 									 Faça login! 
 							</a></center>';
 						}

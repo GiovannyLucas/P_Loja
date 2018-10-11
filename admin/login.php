@@ -5,7 +5,6 @@ error_reporting(0);
 
 	if (isset($_POST['user']) && isset($_POST['pass'])) {
 		$user = $_POST['user'];
-		$pass = md5($_POST['pass']);
 
 		if (substr($user, -4) == "_ADM") {
 			$sql = "SELECT * FROM users_admin WHERE nome ='".$user."' AND senha ='".$_POST['pass']."'";
@@ -20,7 +19,7 @@ error_reporting(0);
 			
 			if (mysqli_num_rows($query) > 0) {
 				$_SESSION['user'] = $_POST['user'];
-				header('location: ../index.html');
+				header('location: ../index.php');
 			} else {
 				$_SESSION['msg'] = "<div id='alert' class='alert alert-danger'>Usuário e/ou Senha incorreto(s)!</div>";
 			}

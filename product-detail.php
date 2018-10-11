@@ -165,7 +165,7 @@ echo '
 							<div class="btn-addcart-product-detail size9 trans-0-4 m-t-10 m-b-10">
 								<!-- Button -->
 								<a href="?acao=add&id=<?php echo $dados['cod']; ?>" class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
-									Adicionar ao carrinho
+									Add ao carrinho
 								</a>
 							</div>
 						</div>

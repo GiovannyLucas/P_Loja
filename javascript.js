@@ -2,7 +2,7 @@ $(document).ready(function(){
 	
 	$('#campo').keyup(function(){
 
-		$('form').submit(function(){
+		$('#forme').submit(function(){
 
 			var dados = $(this).serialize();
 
@@ -22,7 +22,7 @@ $(document).ready(function(){
 
 		});
 
-		$('form').trigger('submit');
+		$('#forme').trigger('submit');
 
 	});
 

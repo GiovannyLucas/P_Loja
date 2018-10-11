@@ -8,26 +8,28 @@ error_reporting(0);
 	<thead>
 		<tr style="background:black; color:white;">
 			<td>Código</td>
-			<td>Nome</td>
-			<td>Preço</td>
-			<td>Categoria</td>
+			<td>Valor</td>
+			<td>Comprador</td>
+			<td>Data a compra</td>
+			<td>Prazo</td>
 			<td>Ação</td>
 		</tr>
 	</thead>
 	<tbody>
 		<?php 
 
-			$sql = "SELECT * FROM produtos";
+			$sql = "SELECT * FROM pedidos";
 			$query = mysqli_query($conexao, $sql);
 
 			while ($dados = mysqli_fetch_assoc($query)) {
 				echo '
 					<tr>
-						<td>'.$dados['cod'].'</td>
-						<td>'.$dados['nome'].'</td>
+						<td>'.$dados['id'].'</td>
 						<td>'.$dados['preco'].'</td>
-						<td>'.$dados['cat'].'</td>
-						<td><a href="?page=ver&id='.$dados['cod'].'" class="glyphicon glyphicon-eye-open"></a> | <a href="?page=consulta&id='.$dados['cod'].'&acao=del" class="glyphicon glyphicon-trash" style="color:red"></a></td>
+						<td>'.$dados['comprador'].'</td>
+						<td>'.$dados['data'].'</td>
+						<td>'.$dados['prazo'].'</td>
+						<td><a href="?page=consulta&id='.$dados['id'].'&acao=del" class="glyphicon glyphicon-trash" style="color:red"></a></td>
 					</tr>
 				';
 			}
@@ -39,15 +41,14 @@ error_reporting(0);
 <?php 
 
 	if (isset($_GET['id']) && $_GET['acao'] == "del") {
-
-		$queryDel = mysqli_query($conexao, "DELETE FROM imagens WHERE id_Produto = '".$_GET['id']."'");	
-		$queryDel1 = mysqli_query($conexao, "DELETE FROM produtos WHERE cod = '".$_GET['id']."'");
+	
+		$queryDel = mysqli_query($conexao, "DELETE FROM pedidos WHERE id = '".$_GET['id']."'");
 		
-		if ($queryDel && $queryDel1) {
+		if ($queryDel) {
 			echo "<script>alert('Produto apagado com sucesso!');
-							location.href = '?page=consulta';</script>";
+							location.href = '?page=pedidos';</script>";
 		} else {
-			echo "<script>alert('Erro ao apagar o produto!');</script>";
+			echo "<script>alert('Erro ao apagar o pedido!');</script>";
 		}
 	}
 
